@@ -1,8 +1,12 @@
 name: Npm Package Publish
 
 on:
-  release:
-    types: [published]
+  pull_request:
+    branches:
+      - master
+  push:
+    branches:
+      - master
 
 jobs:
   build:
@@ -12,17 +16,20 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
+      - name: Install Dependencies
+        run: |
+          npm install -g npminstall
+          npminstall
+      - run: npm ci
+      - run: npm test
 
   publish-npm:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 12
-          registry-url: https://registry.npmjs.org/
-      - run: npm publish --access public --registry=https://registry.npmjs.org
+      - name: Release NPN Package
+        run: npm run semantic-release
         env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_PACKAGE_TOKEN}}
+          NPM_TOKEN: ${{ secrets.NPM_PACKAGE_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
