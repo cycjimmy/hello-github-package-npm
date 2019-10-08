@@ -8,18 +8,17 @@ on:
     branches:
       - master
 
-# based on https://www.yuque.com/egg/nodejs/github-actions-release-enhance
 jobs:
   publish-npm:
     runs-on: ubuntu-latest
-    container:
-      image: thonatos/github-actions-nodejs
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
       - name: Install Dependencies
-        run: |
-          npm install -g npminstall
-          npminstall
+        run: npm install
+      - run: npm ci
       - run: npm test
       - name: Release NPN Package
         run: npm run semantic-release
