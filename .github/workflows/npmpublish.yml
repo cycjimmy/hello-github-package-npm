@@ -1,4 +1,4 @@
-name: Node.js Package
+name: Npm Package Publish
 
 on:
   pull_request:
@@ -16,8 +16,6 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-      - run: npm ci
-      - run: npm test
 
   publish-npm:
     needs: build
