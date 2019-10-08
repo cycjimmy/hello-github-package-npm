@@ -24,5 +24,9 @@ Step 3: Publish
 $ npm publish
 ```
 
-## 相关
+## Npm Package Publish (Action)
+* Add NPM_PACKAGE_TOKEN
+  * Repository`Settings` -> `Secrets` -> Add `NPM_PACKAGE_TOKEN`
+
+## Related
 * https://help.github.com/cn/articles/configuring-npm-for-use-with-github-package-registry
