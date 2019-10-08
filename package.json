@@ -1,6 +1,6 @@
 {
   "name": "@cycjimmy/hello-github-package-npm",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "hello github package npm",
   "main": "index.js",
   "scripts": {

@@ -2,7 +2,7 @@
 
 The repository is used for private testing based on [Codertocat/hello-world-npm](https://github.com/Codertocat/hello-world-npm)
 
-## Steps
+## Steps(If Using Action, skip this step)
 Step 0: [Create a personal access token for the command line](https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line)
 
 Step 1: Use `publishConfig` option in your package.json
