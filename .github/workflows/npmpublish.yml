@@ -8,16 +8,18 @@ on:
     branches:
       - master
 
+# based on https://www.yuque.com/egg/nodejs/github-actions-release-enhance
 jobs:
   publish-npm:
     runs-on: ubuntu-latest
+    container:
+      image: thonatos/github-actions-nodejs
     steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 12
+      - uses: actions/checkout@master
       - name: Install Dependencies
-        run: npm install
+        run: |
+          npm install -g npminstall
+          npminstall
       - run: npm ci
       - run: npm test
       - name: Release NPN Package
