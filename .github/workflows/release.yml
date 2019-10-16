@@ -13,16 +13,41 @@ jobs:
     name: release
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@master
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: Setup Node.js with GitHub Package Registry
+        uses: actions/setup-node@master
         with:
           node-version: 12
-      - name: Install
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          registry-url: 'https://npm.pkg.github.com'
+          scope: 'cycjimmy'
+          always-auth: true
+
+      - name: Setup Node.js with npm Package Registry
+        uses: actions/setup-node@master
+        with:
+          node-version: 12
+          NPM_TOKEN: ${{ secrets.NPM_PACKAGE_TOKEN }}
+          registry-url: 'https://registry.npmjs.org'
+          always-auth: true
+
+      - name: Install dependencies
         run: npm ci
+
+      - name: Build
+        run: npm run build
+
       - name: Test
         run: npm test
-      - name: Generate release
+
+      - name: Release
         env:
+          CI: true
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_PACKAGE_TOKEN }}
-        run: npx semantic-release
+        run: |
+          echo "//npm.pkg.github.com/:_authToken=$GITHUB_TOKEN" > /home/runner/work/_temp/.npmrc
+          echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> /home/runner/work/_temp/.npmrc
+          npx semantic-release

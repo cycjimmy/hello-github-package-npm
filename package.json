@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Mock test\" && exit 0",
+    "build": "echo \"Mock build\" && exit 0",
     "semantic-release": "semantic-release"
   },
   "repository": {
