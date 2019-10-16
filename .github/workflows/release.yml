@@ -25,7 +25,7 @@ jobs:
           scope: 'cycjimmy'
           always-auth: true
 
-      - name: Setup Node.js with npm Package Registry
+      - name: Setup Node.js with Npm Package Registry
         uses: actions/setup-node@v1
         with:
           node-version: 12
@@ -42,6 +42,15 @@ jobs:
       - name: Test
         run: npm test
 
+      - name: Set .npmrc
+        env:
+          CI: true
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_PACKAGE_TOKEN }}
+        run: |
+          echo "//npm.pkg.github.com/:_authToken=$GITHUB_TOKEN" > /home/runner/work/_temp/.npmrc
+          echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> /home/runner/work/_temp/.npmrc
+
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -50,3 +59,5 @@ jobs:
 
       - name: Publish To GitHub Package Registry
         run: npm publish --@cycjimmy:registry='https://npm.pkg.github.com'
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
