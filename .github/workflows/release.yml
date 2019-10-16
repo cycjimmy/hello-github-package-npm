@@ -36,15 +36,9 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_PACKAGE_TOKEN }}
         run: npx semantic-release
 
-      - name: Setup Node.js with GitHub Package Registry
-        uses: actions/setup-node@v1
-        with:
-          node-version: 12
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          registry-url: 'https://npm.pkg.github.com'
-          scope: 'cycjimmy'
-
       - name: Publish To GitHub Package Registry
-        run: npm publish
         env:
-          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "//npm.pkg.github.com/:_authToken=$GITHUB_TOKEN" > /home/runner/work/_temp/.npmrc
+          npm publish
