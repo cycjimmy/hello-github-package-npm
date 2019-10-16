@@ -4,11 +4,12 @@
   "description": "hello github package npm",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Mock test\" && exit 0"
+    "test": "echo \"Mock test\" && exit 0",
+    "semantic-release": "semantic-release"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cycjimmy/hello-github-package-npm.git"
+    "url": "https://github.com/cycjimmy/hello-github-package-npm.git"
   },
   "keywords": [
     "github",
@@ -20,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/cycjimmy/hello-github-package-npm/issues"
   },
-  "homepage": "https://github.com/cycjimmy/hello-github-package-npm#readme"
+  "homepage": "https://github.com/cycjimmy/hello-github-package-npm#readme",
+  "devDependencies": {
+    "semantic-release": "^15.13.24"
+  }
 }
