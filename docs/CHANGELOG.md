@@ -1,3 +1,10 @@
+## [1.0.5](https://github.com/cycjimmy/hello-github-package-npm/compare/v1.0.4...v1.0.5) (2019-10-16)
+
+
+### Bug Fixes
+
+* **release.yml:** try new release setting ([0003299](https://github.com/cycjimmy/hello-github-package-npm/commit/0003299ef115ddd3f102d6a9d73319b1482df670))
+
 ## [1.0.4](https://github.com/cycjimmy/hello-github-package-npm/compare/v1.0.3...v1.0.4) (2019-10-16)
 
 
