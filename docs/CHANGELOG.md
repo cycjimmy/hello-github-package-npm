@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/cycjimmy/hello-github-package-npm/compare/v1.0.2...v1.0.3) (2019-10-16)
+
+
+### Bug Fixes
+
+* **release.yml:** fix publish to gpr ([6927e68](https://github.com/cycjimmy/hello-github-package-npm/commit/6927e684230fe224395e428974e6f3428c262d9b))
+
 ## [1.0.2](https://github.com/cycjimmy/hello-github-package-npm/compare/v1.0.1...v1.0.2) (2019-10-16)
 
 
