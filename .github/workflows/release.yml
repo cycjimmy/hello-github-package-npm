@@ -37,8 +37,7 @@ jobs:
         run: npx semantic-release
 
       - name: Publish To GitHub Package Registry
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          echo "//npm.pkg.github.com/:_authToken=$GITHUB_TOKEN" > /home/runner/work/_temp/.npmrc
-          npm publish
+        uses: jgierer12/npm-auth-gpr@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - run: npm publish
