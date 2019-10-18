@@ -1,6 +1,6 @@
 {
   "name": "@cycjimmy/hello-github-package-npm",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "hello github package npm",
   "main": "index.js",
   "scripts": {
@@ -23,6 +23,5 @@
     "url": "https://github.com/cycjimmy/hello-github-package-npm/issues"
   },
   "homepage": "https://github.com/cycjimmy/hello-github-package-npm#readme",
-  "devDependencies": {
-  }
+  "devDependencies": {}
 }

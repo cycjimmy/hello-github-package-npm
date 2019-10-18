@@ -1,3 +1,10 @@
+## [1.0.8](https://github.com/cycjimmy/hello-github-package-npm/compare/v1.0.7...v1.0.8) (2019-10-18)
+
+
+### Bug Fixes
+
+* **branch:** Push updates to v1 branch after releases ([ee12d05](https://github.com/cycjimmy/hello-github-package-npm/commit/ee12d056b384d80b970c3ed33958009116c7b830))
+
 ## [1.0.7](https://github.com/cycjimmy/hello-github-package-npm/compare/v1.0.6...v1.0.7) (2019-10-17)
 
 
