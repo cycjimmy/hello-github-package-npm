@@ -1,3 +1,10 @@
+## [1.0.9](https://github.com/cycjimmy/hello-github-package-npm/compare/v1.0.8...v1.0.9) (2019-10-18)
+
+
+### Bug Fixes
+
+* use major version for semantic-release-action ([92a084e](https://github.com/cycjimmy/hello-github-package-npm/commit/92a084ea9f99ec224f6d5d5bc5cc0afc3b589483))
+
 ## [1.0.8](https://github.com/cycjimmy/hello-github-package-npm/compare/v1.0.7...v1.0.8) (2019-10-18)
 
 
