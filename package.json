@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/cycjimmy/hello-github-package-npm#readme",
   "devDependencies": {
-    "@cycjimmy/config-lib": "^1.1.1",
+    "@cycjimmy/config-lib": "^1.1.2",
     "cz-conventional-changelog": "^3.0.2"
   },
   "publishConfig": {
