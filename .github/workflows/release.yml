@@ -16,6 +16,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v1
 
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Test
+        run: npm test
+
       - name: Setup Node.js with GitHub Package Registry
         uses: actions/setup-node@v1
         with:
@@ -32,15 +41,6 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           registry-url: 'https://registry.npmjs.org'
           always-auth: true
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build
-        run: npm run build
-
-      - name: Test
-        run: npm test
 
       - name: Set .npmrc
         env:
