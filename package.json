@@ -23,5 +23,12 @@
     "url": "https://github.com/cycjimmy/hello-github-package-npm/issues"
   },
   "homepage": "https://github.com/cycjimmy/hello-github-package-npm#readme",
-  "devDependencies": {}
+  "devDependencies": {
+    "cz-conventional-changelog": "^3.0.2"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
 }
