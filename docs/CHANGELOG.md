@@ -1,3 +1,10 @@
+## [1.0.17](https://github.com/cycjimmy/hello-github-package-npm/compare/v1.0.16...v1.0.17) (2019-10-22)
+
+
+### Bug Fixes
+
+* test ([bffda47](https://github.com/cycjimmy/hello-github-package-npm/commit/bffda47b8c55b06dcc1533ebb3e5459dcbdb5271))
+
 ## [1.0.13](https://github.com/cycjimmy/hello-github-package-npm/compare/v1.0.12...v1.0.13) (2019-10-21)
 
 
