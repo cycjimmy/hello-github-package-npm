@@ -46,19 +46,15 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-
 # IDE
-.idea/
+.idea
 
 # nodejs
 node_modules/
 npm-debug.log
 yarn-error.log
-bower_components/
 
 # project
-.publish/
-dist/
-build/
+.publish/**/*.js
 temp/
 
