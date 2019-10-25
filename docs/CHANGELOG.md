@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/cycjimmy/hello-github-package-npm/compare/v1.0.18...v1.1.0) (2019-10-25)
+
+
+### Features
+
+* **rebuild:** use rollup ([0b5b807](https://github.com/cycjimmy/hello-github-package-npm/commit/0b5b8072a9c227d09ba03f7e6fbc6b049b8113ee))
+
 ## [1.0.18](https://github.com/cycjimmy/hello-github-package-npm/compare/v1.0.17...v1.0.18) (2019-10-22)
 
 
