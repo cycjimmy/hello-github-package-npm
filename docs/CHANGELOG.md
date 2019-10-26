@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/cycjimmy/hello-github-package-npm/compare/v1.1.0...v1.1.1) (2019-10-26)
+
+
+### Bug Fixes
+
+* **test:** test for no-ci mode ([4324c96](https://github.com/cycjimmy/hello-github-package-npm/commit/4324c964162385a1049b1be9cb392e280c3a96a9))
+
 # [1.1.0](https://github.com/cycjimmy/hello-github-package-npm/compare/v1.0.18...v1.1.0) (2019-10-25)
 
 
