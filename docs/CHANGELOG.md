@@ -1,3 +1,11 @@
+## [1.1.2](https://github.com/cycjimmy/hello-github-package-npm/compare/v1.1.1...v1.1.2) (2019-10-26)
+
+
+### Bug Fixes
+
+* **test:** test ([d3e78a0](https://github.com/cycjimmy/hello-github-package-npm/commit/d3e78a08ff944339dc38ace4a13f757498210972))
+* **test:** test a new workflow ([af93827](https://github.com/cycjimmy/hello-github-package-npm/commit/af938279c5f7b5aae0154cdb3dc14550cbe9bac3))
+
 ## [1.1.1](https://github.com/cycjimmy/hello-github-package-npm/compare/v1.1.0...v1.1.1) (2019-10-26)
 
 
