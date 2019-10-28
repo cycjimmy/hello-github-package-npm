@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/cycjimmy/hello-github-package-npm/compare/v1.2.0...v1.3.0) (2019-10-28)
+
+
+### Features
+
+* **sass:** support sass ([854e520](https://github.com/cycjimmy/hello-github-package-npm/commit/854e520df6fa7e70e1d9089c25d1ce7b6f517ebd))
+
 # [1.2.0](https://github.com/cycjimmy/hello-github-package-npm/compare/v1.1.4...v1.2.0) (2019-10-28)
 
 
