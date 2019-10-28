@@ -32,7 +32,9 @@
   "publishConfig": {
     "access": "public"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@cycjimmy/sass-lib": "^1.0.2"
+  },
   "devDependencies": {
     "@babel/core": "^7.6.4",
     "@babel/preset-env": "^7.6.3",
@@ -43,6 +45,7 @@
     "eslint": "^6.5.1",
     "eslint-config-rollup": "^0.1.0",
     "jest": "^24.9.0",
+    "node-sass": "^4.13.0",
     "rollup": "^1.25.2",
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-banner": "^0.2.1",

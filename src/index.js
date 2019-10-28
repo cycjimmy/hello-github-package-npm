@@ -1,5 +1,5 @@
 import helloTemplate from './template/helloTemplate';
-import _style from './styles/index.css';
+import _style from './styles/index.scss';
 
 const helloWorld = () => 'hello world!';
 const helloElement = helloTemplate({
