@@ -5,7 +5,6 @@ import pkg from '../package.json';
 export default [
   {
     input,
-    external: ['pug'],
     output: [
       {file: pkg.main, format: 'cjs'},
       {file: pkg.module, format: 'es'}
@@ -16,7 +15,7 @@ export default [
     input,
     output: {
       name,
-      file: pkg.browser,
+      file: pkg.browser.replace('.js', '.min.js'),
       format: 'umd',
       banner,
     },

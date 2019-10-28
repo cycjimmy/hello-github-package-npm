@@ -1,6 +1,0 @@
-/*! 
- * @cycjimmy/hello-github-package-npm v1.1.4
- * Homepage: https://github.com/cycjimmy/hello-github-package-npm#readme
- * Released under the MIT License.
- */
-!function(e,t){"object"==typeof exports&&"undefined"!=typeof module?module.exports=t():"function"==typeof define&&define.amd?define(t):(e=e||self).helloWorld=t()}(this,(function(){"use strict";var e={helloWrapper:"_3Wvu2zlWlQ",hello:"_2QYyy_578r"};!function(e,t){void 0===t&&(t={});var l=t.insertAt;if(e&&"undefined"!=typeof document){var n=document.head||document.getElementsByTagName("head")[0],o=document.createElement("style");o.type="text/css","top"===l&&n.firstChild?n.insertBefore(o,n.firstChild):n.appendChild(o),o.styleSheet?o.styleSheet.cssText=e:o.appendChild(document.createTextNode(e))}}("._3Wvu2zlWlQ{width:500px;height:300px;margin:auto}._2QYyy_578r,._3Wvu2zlWlQ{display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;-webkit-align-items:center;-ms-flex-align:center;align-items:center;border:1px solid #000}._2QYyy_578r{width:80%;height:80%}");return{helloWorld:function(){return"hello world!"},helloElement:function(e){var t=e.message,l=e._style;return'\n<div class="'.concat(l.helloWrapper,'">\n  <p class="').concat(l.hello,'">').concat(t,"</p>\n</div>\n")}({message:"hello world!",_style:e}),_style:e}}));

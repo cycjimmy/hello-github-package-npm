@@ -55,6 +55,6 @@ npm-debug.log
 yarn-error.log
 
 # project
-.publish/**/*.js
+.publish/
 temp/
 

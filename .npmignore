@@ -16,7 +16,7 @@ yarn-error.log
 # project
 *.config.*
 .publish/
-rollup
+rollup/
 src/
 
 

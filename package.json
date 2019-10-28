@@ -11,8 +11,9 @@
     "lint": "eslint -c .eslintrc 'src/**/*.js'",
     "lint:fix": "eslint --fix -c .eslintrc 'src/**/*.js' --fix",
     "dev": "rollup -c rollup/rollup.config.dev.js --watch",
-    "build": "cross-env NODE_ENV=production rollup -c rollup/rollup.config.prod.js",
-    "build:dev": "cross-env NODE_ENV=production rollup -c rollup/rollup.config.dev.js"
+    "build": "npm run build:dev && npm run build:prod",
+    "build:dev": "cross-env NODE_ENV=production rollup -c rollup/rollup.config.dev.js",
+    "build:prod": "cross-env NODE_ENV=production rollup -c rollup/rollup.config.prod.js"
   },
   "repository": {
     "type": "git",
@@ -51,6 +52,7 @@
     "rollup-plugin-banner": "^0.2.1",
     "rollup-plugin-browsersync": "^1.0.0",
     "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-copy": "^3.1.0",
     "rollup-plugin-eslint": "^7.0.0",
     "rollup-plugin-json": "^4.0.0",
     "rollup-plugin-node-resolve": "^5.2.0",
