@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/cycjimmy/hello-github-package-npm/compare/v1.3.0...v1.3.1) (2019-10-28)
+
+
+### Bug Fixes
+
+* new setting ([3a02075](https://github.com/cycjimmy/hello-github-package-npm/commit/3a0207504b04e0fcfa9b3c9f21ac87cef73d9e27))
+
 # [1.3.0](https://github.com/cycjimmy/hello-github-package-npm/compare/v1.2.0...v1.3.0) (2019-10-28)
 
 
