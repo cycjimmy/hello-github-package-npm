@@ -6,6 +6,7 @@
   "module": "dist/hello-world.esm.js",
   "browser": "dist/hello-world.umd.js",
   "scripts": {
+    "start": "npm run dev",
     "test": "jest",
     "lint": "eslint -c .eslintrc 'src/**/*.js'",
     "lint:fix": "eslint --fix -c .eslintrc 'src/**/*.js' --fix",
@@ -36,6 +37,7 @@
     "@babel/core": "^7.6.4",
     "@babel/preset-env": "^7.6.3",
     "@cycjimmy/config-lib": "^1.3.0",
+    "autoprefixer": "^9.7.0",
     "babel-jest": "^24.9.0",
     "cross-env": "^6.0.3",
     "eslint": "^6.5.1",
@@ -49,6 +51,7 @@
     "rollup-plugin-eslint": "^7.0.0",
     "rollup-plugin-json": "^4.0.0",
     "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-postcss": "^2.0.3",
     "rollup-plugin-terser": "^5.1.2"
   }
 }

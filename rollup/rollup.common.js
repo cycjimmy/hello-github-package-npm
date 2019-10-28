@@ -3,6 +3,8 @@ import json from 'rollup-plugin-json';
 import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import babel from 'rollup-plugin-babel';
+import postcss from 'rollup-plugin-postcss';
+import autoprefixer from 'autoprefixer';
 import {terser} from 'rollup-plugin-terser/index';
 import pkg from '../package.json';
 // config
@@ -22,8 +24,20 @@ export const banner = `/*!
 
 export const plugins = [
   json(),
+  postcss({
+    modules: {
+      generateScopedName: IS_PRODUCTION
+        ? '[hash:base64:10]'
+        : '[name]__[local]',
+    },
+    minimize: true,
+    plugins: [autoprefixer],
+  }),
   eslint({
     fix: true,
+    exclude: [
+      '**/*.(css|scss)',
+    ]
   }),
   resolve(),
   babel(),

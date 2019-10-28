@@ -1,0 +1,20 @@
+.helloWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 500px;
+  height: 300px;
+  margin: auto;
+
+  border: 1px solid black;
+}
+
+.hello {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  height: 80%;
+
+  border: 1px solid black;
+}
