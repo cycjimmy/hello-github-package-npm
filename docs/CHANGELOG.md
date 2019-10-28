@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/cycjimmy/hello-github-package-npm/compare/v1.1.4...v1.2.0) (2019-10-28)
+
+
+### Features
+
+* **postcss:** support postcss ([ca35149](https://github.com/cycjimmy/hello-github-package-npm/commit/ca35149feca31e8b825ee30f529adba3395bb84b))
+
 ## [1.1.4](https://github.com/cycjimmy/hello-github-package-npm/compare/v1.1.3...v1.1.4) (2019-10-26)
 
 
