@@ -1,25 +1,17 @@
-# IDE
-.idea
-.editorconfig
-
-# doc
-.github
-
-# test
-test
-.travis.yml
-
 # node
 node_modules/
 *.log
 yarn.lock
-yarn-error.log
 
-# project
+# config
+__*__
 .*
 *.config.*
+
+# project
 .publish/
 static/
+docs/
 rollup/
 src/
 
