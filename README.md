@@ -27,6 +27,6 @@
 [semantic-url]: https://github.com/semantic-release/semantic-release
 [semantic-image]: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg
 
-Private testing for Automatic test, release and so on
+Private testing for Automatic test, release and so on.
 
 ([Releases](https://github.com/cycjimmy/hello-github-package-npm/releases) | [Demo](https://cycjimmy.github.io/hello-github-package-npm/))
