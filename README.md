@@ -29,3 +29,4 @@
 
 Private testing for Automatic test, release and so on
 
+([Releases](https://github.com/cycjimmy/hello-github-package-npm/releases) | [Demo](https://cycjimmy.github.io/hello-github-package-npm/))
