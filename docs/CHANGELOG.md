@@ -1,3 +1,10 @@
+## [1.3.7](https://github.com/cycjimmy/hello-github-package-npm/compare/v1.3.6...v1.3.7) (2019-10-29)
+
+
+### Bug Fixes
+
+* **coveralls:** add coveralls ([c7d4d5f](https://github.com/cycjimmy/hello-github-package-npm/commit/c7d4d5f9f6c9bd67ac10205a7c9fa85f6015bf25))
+
 ## [1.3.6](https://github.com/cycjimmy/hello-github-package-npm/compare/v1.3.5...v1.3.6) (2019-10-29)
 
 
