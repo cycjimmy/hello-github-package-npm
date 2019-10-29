@@ -5,6 +5,7 @@
 [![build status][travis-image]][travis-url]
 [![David deps][david-image]][david-url]
 [![devDependencies Status][david-dev-image]][david-dev-url]
+[![Coverage Status][coverage-image]][coverage-url]
 [![npm download][download-image]][download-url]
 [![jsdelivr][jsdelivr-image]][jsdelivr-url]
 [![semantic-release][semantic-image]][semantic-url]
@@ -19,6 +20,8 @@
 [david-url]: https://david-dm.org/cycjimmy/hello-github-package-npm
 [david-dev-image]: https://david-dm.org/cycjimmy/hello-github-package-npm/dev-status.svg?style=flat-square
 [david-dev-url]: https://david-dm.org/cycjimmy/hello-github-package-npm?type=dev
+[coverage-image]: https://coveralls.io/repos/github/cycjimmy/hello-github-package-npm/badge.svg
+[coverage-url]: https://coveralls.io/github/cycjimmy/hello-github-package-npm
 [download-image]: https://img.shields.io/npm/dm/@cycjimmy/hello-github-package-npm.svg?style=flat-square
 [download-url]: https://npmjs.org/package/@cycjimmy/hello-github-package-npm
 [jsdelivr-image]: https://data.jsdelivr.com/v1/package/npm/@cycjimmy/hello-github-package-npm/badge

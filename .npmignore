@@ -10,6 +10,7 @@ __*__
 
 # project
 .publish/
+coverage
 static/
 docs/
 rollup/

@@ -57,4 +57,5 @@ node_modules/
 .publish/
 dist/
 temp/
+coverage
 
