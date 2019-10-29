@@ -1,3 +1,10 @@
+## [1.3.2](https://github.com/cycjimmy/hello-github-package-npm/compare/v1.3.1...v1.3.2) (2019-10-29)
+
+
+### Bug Fixes
+
+* **rollup:** modify setting ([e779147](https://github.com/cycjimmy/hello-github-package-npm/commit/e779147e652bcb0e39d432ca45f53e44e580c36e))
+
 ## [1.3.1](https://github.com/cycjimmy/hello-github-package-npm/compare/v1.3.0...v1.3.1) (2019-10-28)
 
 
