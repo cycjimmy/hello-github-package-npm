@@ -1,15 +1,18 @@
 # hello-github-package-npm
 
 [![NPM version][npm-image]][npm-url]
+![][workflows-badge-image]
 [![build status][travis-image]][travis-url]
 [![David deps][david-image]][david-url]
 [![devDependencies Status][david-dev-image]][david-dev-url]
 [![npm download][download-image]][download-url]
 [![jsdelivr][jsdelivr-image]][jsdelivr-url]
+[![semantic-release][semantic-image]][semantic-url]
 [![npm license][license-image]][download-url]
 
 [npm-image]: https://img.shields.io/npm/v/@cycjimmy/hello-github-package-npm.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/@cycjimmy/hello-github-package-npm
+[workflows-badge-image]: https://github.com/cycjimmy/hello-github-package-npm/workflows/Test%20CI/badge.svg
 [travis-image]: https://img.shields.io/travis/cycjimmy/hello-github-package-npm.svg?style=flat-square
 [travis-url]: https://travis-ci.org/cycjimmy/hello-github-package-npm
 [david-image]: https://img.shields.io/david/cycjimmy/hello-github-package-npm.svg?style=flat-square
@@ -21,6 +24,8 @@
 [jsdelivr-image]: https://data.jsdelivr.com/v1/package/npm/@cycjimmy/hello-github-package-npm/badge
 [jsdelivr-url]: https://www.jsdelivr.com/package/npm/@cycjimmy/hello-github-package-npm
 [license-image]: https://img.shields.io/npm/l/@cycjimmy/hello-github-package-npm.svg?style=flat-square
+[semantic-url]: https://github.com/semantic-release/semantic-release
+[semantic-image]: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg
 
 Private testing for Automatic test, release and so on
 
