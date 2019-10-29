@@ -32,6 +32,9 @@
     "url": "https://github.com/cycjimmy/hello-github-package-npm/issues"
   },
   "homepage": "https://github.com/cycjimmy/hello-github-package-npm#readme",
+  "files": [
+    "/dist"
+  ],
   "publishConfig": {
     "access": "public"
   },

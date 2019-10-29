@@ -12,7 +12,6 @@ __*__
 .publish/
 coverage
 static/
-docs/
 rollup/
 src/
 
