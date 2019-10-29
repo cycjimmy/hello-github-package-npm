@@ -38,10 +38,12 @@ jobs:
           node-version: 12
 
       - name: Install dependencies
-        run: npm ci
+        run: npm ci && npm run coveralls
 
-      - name: Coveralls
-        run: jest --coverage --coverageReporters=text-lcov | coveralls
+      - name: Coveralls GitHub Action
+        uses: coverallsapp/github-action@v1.0.1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 
   release:
     name: release
