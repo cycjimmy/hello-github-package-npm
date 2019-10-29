@@ -10,14 +10,15 @@ test
 .travis.yml
 
 # node
+node_modules/
+*.log
 yarn.lock
 yarn-error.log
 
 # project
+.*
 *.config.*
 .publish/
 rollup/
 src/
-
-
 

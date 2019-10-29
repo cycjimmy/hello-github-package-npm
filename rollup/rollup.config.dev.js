@@ -1,4 +1,4 @@
-import {input, IS_PRODUCTION, name, plugins,} from './rollup.common';
+import {input, IS_DEVELOPMENT, IS_DEPLOYMENT, name, plugins,} from './rollup.common';
 
 import browsersync from 'rollup-plugin-browsersync';
 import copy from 'rollup-plugin-copy';
@@ -9,13 +9,14 @@ export default [
     input,
     output: {
       name,
-      file: pkg.browser,
+      file: pkg.browser.replace('.min.js', '.js'),
       format: 'umd',
     },
     plugins: [
       ...plugins,
 
-      copy({
+      (IS_DEPLOYMENT && copy({
+        hook: 'writeBundle',
         targets: [{
           src: [
             'static/**/*',
@@ -23,10 +24,13 @@ export default [
           ],
           dest: '.publish'
         }],
-      }),
+      })),
 
-      (!IS_PRODUCTION && browsersync({
-        server: '.publish',
+      (IS_DEVELOPMENT && browsersync({
+        server: [
+          'static',
+          'dist',
+        ],
         watch: true,
       })),
     ],

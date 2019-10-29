@@ -15,7 +15,7 @@ export default [
     input,
     output: {
       name,
-      file: pkg.browser.replace('.js', '.min.js'),
+      file: pkg.browser,
       format: 'umd',
       banner,
     },
