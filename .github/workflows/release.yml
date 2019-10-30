@@ -1,4 +1,4 @@
-name: Release
+name: Coveralls
 
 on:
   push:
@@ -24,33 +24,10 @@ jobs:
       - name: Test
         run: npm run test
 
-  coveralls:
-    name: coveralls
-    runs-on: ubuntu-latest
-    needs: test
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v1
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: 12
-
-      - name: Install dependencies and make test-coverage
-        run: |
-          npm ci
-          npm run coveralls
-
-      - name: Coveralls GitHub Action
-        uses: coverallsapp/github-action@v1.0.1
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-
   release:
     name: release
     runs-on: ubuntu-latest
-    needs: [test, coveralls]
+    needs: test
     steps:
       - name: Checkout
         uses: actions/checkout@v1
