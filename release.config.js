@@ -3,15 +3,12 @@ const makeCommonConfig = require('@cycjimmy/config-lib/semanticRelease/15.x/make
 
 const pkg = require('./package.json');
 
-module.exports = {
-  ci: false,
-  ...makeCommonConfig({
-    githubOptions: {
-      assets: [pkg.browser]
-    },
-    exec: true,
-    execOptions: {
-      publishCmd: 'npm run build'
-    }
-  })
-};
+module.exports = makeCommonConfig({
+  githubOptions: {
+    assets: [pkg.browser]
+  },
+  exec: true,
+  execOptions: {
+    publishCmd: 'npm run build'
+  }
+});
