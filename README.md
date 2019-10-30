@@ -7,7 +7,7 @@
 ![][workflows-badge-image]
 [![build status][travis-image]][travis-url]
 [![libraries dependency status][libraries-status-image]][libraries-status-url]
-[![libraries sourcerank][libraries-sourcerank-image]][libraries-status-url]
+[![libraries sourcerank][libraries-sourcerank-image]][libraries-sourcerank-url]
 [![Coverage Status][coverage-image]][coverage-url]
 [![Release date][release-date-image]][release-url]
 [![rollup][rollup-image]][rollup-url]
@@ -35,6 +35,7 @@ This is a private javascript lib template for automatic test, release and so on.
 [libraries-status-image]: https://img.shields.io/librariesio/release/npm/@cycjimmy/hello-github-package-npm
 [libraries-sourcerank-image]: https://img.shields.io/librariesio/sourcerank/npm/@cycjimmy/hello-github-package-npm
 [libraries-status-url]: https://libraries.io/github/cycjimmy/hello-github-package-npm
+[libraries-sourcerank-url]: https://libraries.io/npm/@cycjimmy%2Fhello-github-package-npm
 
 [coverage-image]: https://img.shields.io/coveralls/github/cycjimmy/hello-github-package-npm
 [coverage-url]: https://coveralls.io/github/cycjimmy/hello-github-package-npm
