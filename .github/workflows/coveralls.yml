@@ -1,4 +1,4 @@
-name: Release
+name: Coveralls
 
 on:
   push:
@@ -31,4 +31,3 @@ jobs:
         uses: coverallsapp/github-action@v1.0.1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          parallel-finished: true

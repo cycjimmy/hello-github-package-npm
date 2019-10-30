@@ -1,4 +1,4 @@
-name: Coveralls
+name: Release
 
 on:
   push:
