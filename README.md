@@ -11,6 +11,10 @@
 [![semantic-release][semantic-image]][semantic-url]
 [![npm license][license-image]][download-url]
 
+This is a private javascript lib template for automatic test, release and so on.
+
+([Releases](https://github.com/cycjimmy/hello-github-package-npm/releases) | [Demo](https://cycjimmy.github.io/hello-github-package-npm/))
+
 [npm-image]: https://img.shields.io/npm/v/@cycjimmy/hello-github-package-npm.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/@cycjimmy/hello-github-package-npm
 [workflows-badge-image]: https://github.com/cycjimmy/hello-github-package-npm/workflows/Test%20CI/badge.svg
@@ -29,8 +33,3 @@
 [license-image]: https://img.shields.io/npm/l/@cycjimmy/hello-github-package-npm.svg?style=flat-square
 [semantic-url]: https://github.com/semantic-release/semantic-release
 [semantic-image]: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg
-
-
-This is a private javascript lib template for automatic test, release and so on.
-
-([Releases](https://github.com/cycjimmy/hello-github-package-npm/releases) | [Demo](https://cycjimmy.github.io/hello-github-package-npm/))
