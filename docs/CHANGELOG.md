@@ -1,3 +1,10 @@
+## [1.3.12](https://github.com/cycjimmy/hello-github-package-npm/compare/v1.3.11...v1.3.12) (2019-12-23)
+
+
+### Bug Fixes
+
+* update depandencies ([8146234](https://github.com/cycjimmy/hello-github-package-npm/commit/8146234a3d7033aeb7317ba2086c9c56af9bde71))
+
 ## [1.3.11](https://github.com/cycjimmy/hello-github-package-npm/compare/v1.3.10...v1.3.11) (2019-11-25)
 
 
