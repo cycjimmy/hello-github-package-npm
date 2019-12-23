@@ -1,3 +1,10 @@
+## [1.3.14](https://github.com/cycjimmy/hello-github-package-npm/compare/v1.3.13...v1.3.14) (2019-12-23)
+
+
+### Bug Fixes
+
+* **test:** test for actions/checkout@v2 ([f24a9c5](https://github.com/cycjimmy/hello-github-package-npm/commit/f24a9c54e44da23fe9cc9b51025d7b32518127c2))
+
 ## [1.3.13](https://github.com/cycjimmy/hello-github-package-npm/compare/v1.3.12...v1.3.13) (2019-12-23)
 
 
