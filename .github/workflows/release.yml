@@ -36,7 +36,7 @@ jobs:
         run: npm ci
 
       - name: Semantic Release
-        uses: aslafy-z/semantic-release-action@feat/extends-param
+        uses: cycjimmy/semantic-release-action-mirror@master
         id: semantic
         with:
           branch: master
