@@ -55,4 +55,3 @@ This is a private javascript lib template for automatic test, release and so on.
 [license-image]: https://img.shields.io/npm/l/@cycjimmy/hello-github-package-npm
 
 [github-pages-url]: https://cycjimmy.github.io/hello-github-package-npm/
-
