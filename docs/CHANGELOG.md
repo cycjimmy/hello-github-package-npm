@@ -1,3 +1,13 @@
+## [1.3.16](https://github.com/cycjimmy/hello-github-package-npm/compare/v1.3.15...v1.3.16) (2020-01-04)
+
+
+### Bug Fixes
+
+* **ci:** test actions ([dd78aea](https://github.com/cycjimmy/hello-github-package-npm/commit/dd78aeab43a2c1dfabe6d20ea7a456f5f5480819))
+* **ci:** test for actions ([2852bdb](https://github.com/cycjimmy/hello-github-package-npm/commit/2852bdb7f63fce3f41ef7d66c489941e097682de))
+* **test:** test actions ([45ae61e](https://github.com/cycjimmy/hello-github-package-npm/commit/45ae61eaeb2384101704f6125323e30d25a1126c))
+* **test:** test for actions ([ea12da4](https://github.com/cycjimmy/hello-github-package-npm/commit/ea12da47c2efeca9a56858412bc94efab2f53e04))
+
 ## [1.3.15](https://github.com/cycjimmy/hello-github-package-npm/compare/v1.3.14...v1.3.15) (2020-01-03)
 
 
