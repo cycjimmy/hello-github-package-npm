@@ -45,6 +45,7 @@ jobs:
             @semantic-release/git
             @semantic-release/changelog
             @semantic-release/exec
+          extends: release.config.js
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
