@@ -39,6 +39,7 @@ jobs:
         uses: cycjimmy/semantic-release-action@use-the-latest-version-of-semantic-release-by-default
         id: semantic
         with:
+          semantic_version: 16.0.0
           extra_plugins: |
             @semantic-release/git
             @semantic-release/changelog
