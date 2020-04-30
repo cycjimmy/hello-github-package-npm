@@ -1,3 +1,11 @@
+## [1.3.21](https://github.com/cycjimmy/hello-github-package-npm/compare/v1.3.20...v1.3.21) (2020-04-30)
+
+
+### Bug Fixes
+
+* return default semantic_version ([01dc5ce](https://github.com/cycjimmy/hello-github-package-npm/commit/01dc5ce173c4c074ee828dbcbf98bae5b8f14fdd))
+* test semantic v1 ([8a3c69f](https://github.com/cycjimmy/hello-github-package-npm/commit/8a3c69fd0399e904cdeee4b8afa4b1c00d4b7c27))
+
 ## [1.3.20](https://github.com/cycjimmy/hello-github-package-npm/compare/v1.3.19...v1.3.20) (2020-01-28)
 
 
