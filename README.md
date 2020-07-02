@@ -17,8 +17,6 @@
 
 This is a private javascript lib template for automatic test, release and so on. [Demo][github-pages-url]
 
-for next test
-
 <!-- Links: -->
 [npm-image]: https://img.shields.io/npm/v/@cycjimmy/hello-github-package-npm
 [npm-url]: https://npmjs.org/package/@cycjimmy/hello-github-package-npm
