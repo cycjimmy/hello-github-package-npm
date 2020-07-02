@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/cycjimmy/hello-github-package-npm/compare/v1.3.21...v1.4.0) (2020-07-02)
+
+
+### Features
+
+* upgrade deps ([735069d](https://github.com/cycjimmy/hello-github-package-npm/commit/735069d6b045f77bfe082cd7a7b3850783a9edad))
+
 ## [1.3.21](https://github.com/cycjimmy/hello-github-package-npm/compare/v1.3.20...v1.3.21) (2020-04-30)
 
 
