@@ -1,11 +1,11 @@
 import { eslint } from 'rollup-plugin-eslint';
-import json from 'rollup-plugin-json';
-import resolve from 'rollup-plugin-node-resolve';
-import commonjs from 'rollup-plugin-commonjs';
-import babel from 'rollup-plugin-babel';
+import json from '@rollup/plugin-json';
+import resolve from '@rollup/plugin-node-resolve';
+import commonjs from '@rollup/plugin-commonjs';
+import babel from '@rollup/plugin-babel';
 import postcss from 'rollup-plugin-postcss';
 import autoprefixer from 'autoprefixer';
-import { terser } from 'rollup-plugin-terser/index';
+import { terser } from 'rollup-plugin-terser';
 
 import myBanner from '@cycjimmy/config-lib/chore/myBanner';
 // config
@@ -35,7 +35,7 @@ export const plugins = [
     exclude: ['**/*.(css|scss)']
   }),
   resolve(),
-  babel(),
+  babel({ babelHelpers: 'bundled' }),
   commonjs()
 ];
 
