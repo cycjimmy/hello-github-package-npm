@@ -1,3 +1,10 @@
+## [1.4.2](https://github.com/cycjimmy/hello-github-package-npm/compare/v1.4.1...v1.4.2) (2020-07-02)
+
+
+### Bug Fixes
+
+* fix ci warning ([00143d8](https://github.com/cycjimmy/hello-github-package-npm/commit/00143d8300f32c6cc81b2e857253a89947a7c11b))
+
 ## [1.4.1](https://github.com/cycjimmy/hello-github-package-npm/compare/v1.4.0...v1.4.1) (2020-07-02)
 
 
