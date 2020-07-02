@@ -1,3 +1,10 @@
+## [1.4.5-alpha.1](https://github.com/cycjimmy/hello-github-package-npm/compare/v1.4.4...v1.4.5-alpha.1) (2020-07-02)
+
+
+### Bug Fixes
+
+* for alpha test ([a1050b7](https://github.com/cycjimmy/hello-github-package-npm/commit/a1050b76802444941e9df7803ea6679e2c612488))
+
 ## [1.4.4](https://github.com/cycjimmy/hello-github-package-npm/compare/v1.4.3...v1.4.4) (2020-07-02)
 
 
