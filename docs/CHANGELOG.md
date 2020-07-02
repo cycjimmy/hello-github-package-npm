@@ -1,3 +1,17 @@
+## [1.4.6](https://github.com/cycjimmy/hello-github-package-npm/compare/v1.4.5...v1.4.6) (2020-07-02)
+
+
+### Bug Fixes
+
+* test ([08ec404](https://github.com/cycjimmy/hello-github-package-npm/commit/08ec404208c9c398857d67c4e777b2bdc85e4f11))
+
+## [1.4.5](https://github.com/cycjimmy/hello-github-package-npm/compare/v1.4.4...v1.4.5) (2020-07-02)
+
+
+### Bug Fixes
+
+* for next test ([b302931](https://github.com/cycjimmy/hello-github-package-npm/commit/b3029318631343ac549c18e7e35c5446b9fe771b))
+
 ## [1.4.4](https://github.com/cycjimmy/hello-github-package-npm/compare/v1.4.3...v1.4.4) (2020-07-02)
 
 
