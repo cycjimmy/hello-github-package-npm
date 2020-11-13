@@ -19,7 +19,7 @@
 
 This is a private javascript lib template for automatic test, release and so on. [Demo][github-pages-url]
 
-test for alpha.
+test for beta.
 
 <!-- Links: -->
 [npm-latest-image]: https://img.shields.io/npm/v/@cycjimmy/hello-github-package-npm/latest
