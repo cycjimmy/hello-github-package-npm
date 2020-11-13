@@ -3,6 +3,7 @@
 [![NPM latest version][npm-latest-image]][npm-url]
 [![NPM next version][npm-next-image]][npm-url]
 [![NPM alpha version][npm-alpha-image]][npm-url]
+[![NPM beta version][npm-beta-image]][npm-url]
 [![NPM bundle size][npm-bundle-size-image]][npm-url]
 [![npm download][download-image]][download-url]
 [![jsdelivr][jsdelivr-image]][jsdelivr-url]
@@ -23,6 +24,7 @@ This is a private javascript lib template for automatic test, release and so on.
 [npm-latest-image]: https://img.shields.io/npm/v/@cycjimmy/hello-github-package-npm/latest
 [npm-next-image]: https://img.shields.io/npm/v/@cycjimmy/hello-github-package-npm/next
 [npm-alpha-image]: https://img.shields.io/npm/v/@cycjimmy/hello-github-package-npm/alpha
+[npm-beta-image]: https://img.shields.io/npm/v/@cycjimmy/hello-github-package-npm/beta
 [npm-url]: https://npmjs.org/package/@cycjimmy/hello-github-package-npm
 [npm-bundle-size-image]: https://img.shields.io/bundlephobia/min/@cycjimmy/hello-github-package-npm
 
