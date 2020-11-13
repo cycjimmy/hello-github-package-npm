@@ -1,3 +1,21 @@
+# [2.0.0-beta.1](https://github.com/cycjimmy/hello-github-package-npm/compare/v1.5.1...v2.0.0-beta.1) (2020-11-13)
+
+
+### Bug Fixes
+
+* **ci:** fix unexpected input ([d156539](https://github.com/cycjimmy/hello-github-package-npm/commit/d156539c03fde71b3e6e380c20c0feb53f7f626f))
+
+
+### Features
+
+* test for alpha ([2d71535](https://github.com/cycjimmy/hello-github-package-npm/commit/2d71535ddbcd99d4ed6e269799b9e95678820a46))
+* test for beta ([3b5160b](https://github.com/cycjimmy/hello-github-package-npm/commit/3b5160b8a0c5ed9b3a32ad8ce8839b31b966c345))
+
+
+### BREAKING CHANGES
+
+* test for alpha
+
 # [2.0.0-alpha.2](https://github.com/cycjimmy/hello-github-package-npm/compare/v2.0.0-alpha.1...v2.0.0-alpha.2) (2020-11-13)
 
 
