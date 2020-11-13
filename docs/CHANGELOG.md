@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/cycjimmy/hello-github-package-npm/compare/v1.4.6...v1.5.0) (2020-11-13)
+
+
+### Features
+
+* upgrade dependencies ([4794497](https://github.com/cycjimmy/hello-github-package-npm/commit/479449753c89a3e1b278f2510bfd75293b02f2fa))
+
 ## [1.4.6](https://github.com/cycjimmy/hello-github-package-npm/compare/v1.4.5...v1.4.6) (2020-07-02)
 
 
