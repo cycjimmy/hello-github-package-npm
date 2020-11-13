@@ -1,3 +1,10 @@
+## [1.5.1](https://github.com/cycjimmy/hello-github-package-npm/compare/v1.5.0...v1.5.1) (2020-11-13)
+
+
+### Bug Fixes
+
+* fix pushing to gpr ([e2c6514](https://github.com/cycjimmy/hello-github-package-npm/commit/e2c6514bf4826a206423e6bacd709ecfbec2da3f))
+
 # [1.5.0](https://github.com/cycjimmy/hello-github-package-npm/compare/v1.4.6...v1.5.0) (2020-11-13)
 
 
