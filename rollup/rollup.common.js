@@ -27,6 +27,7 @@ export const plugins = [
     modules: {
       generateScopedName: IS_PRODUCTION ? '[hash:base64:10]' : '[name]__[local]'
     },
+    autoModules: false,
     minimize: true,
     plugins: [autoprefixer]
   }),
