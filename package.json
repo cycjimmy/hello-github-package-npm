@@ -1,6 +1,6 @@
 {
   "name": "@cycjimmy/hello-github-package-npm",
-  "version": "2.0.0-beta.1",
+  "version": "2.0.0",
   "description": "hello github package npm",
   "main": "dist/hello-world.cjs.js",
   "module": "dist/hello-world.esm.js",
