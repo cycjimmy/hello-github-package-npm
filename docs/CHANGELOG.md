@@ -1,3 +1,15 @@
+# [2.0.0-alpha.1](https://github.com/cycjimmy/hello-github-package-npm/compare/v1.5.1...v2.0.0-alpha.1) (2020-11-13)
+
+
+### Features
+
+* test for alpha ([2d71535](https://github.com/cycjimmy/hello-github-package-npm/commit/2d71535ddbcd99d4ed6e269799b9e95678820a46))
+
+
+### BREAKING CHANGES
+
+* test for alpha
+
 ## [1.5.1](https://github.com/cycjimmy/hello-github-package-npm/compare/v1.5.0...v1.5.1) (2020-11-13)
 
 
