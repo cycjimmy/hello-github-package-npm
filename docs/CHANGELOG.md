@@ -1,3 +1,15 @@
+# [4.0.0-alpha.1](https://github.com/cycjimmy/hello-github-package-npm/compare/v3.0.0...v4.0.0-alpha.1) (2020-11-16)
+
+
+### Features
+
+* test for alpha ([cefcfa4](https://github.com/cycjimmy/hello-github-package-npm/commit/cefcfa485c3886d4c7a609223d6516ce1f81e5b2))
+
+
+### BREAKING CHANGES
+
+* test for alpha
+
 # [3.0.0](https://github.com/cycjimmy/hello-github-package-npm/compare/v2.0.0...v3.0.0) (2020-11-16)
 
 
