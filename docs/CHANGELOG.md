@@ -1,3 +1,17 @@
+# [4.0.0](https://github.com/cycjimmy/hello-github-package-npm/compare/v3.0.0...v4.0.0) (2020-11-16)
+
+
+### Features
+
+* test for alpha ([cefcfa4](https://github.com/cycjimmy/hello-github-package-npm/commit/cefcfa485c3886d4c7a609223d6516ce1f81e5b2))
+* test for beta ([3a8c36e](https://github.com/cycjimmy/hello-github-package-npm/commit/3a8c36e3175e81e162fdcbf790e3da1e33fd5bf8))
+* test for next ([dbeae55](https://github.com/cycjimmy/hello-github-package-npm/commit/dbeae55890193f536d3874c69bf84a56698d038d))
+
+
+### BREAKING CHANGES
+
+* test for alpha
+
 # [4.0.0-beta.1](https://github.com/cycjimmy/hello-github-package-npm/compare/v3.0.0...v4.0.0-beta.1) (2020-11-16)
 
 
