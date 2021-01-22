@@ -1,3 +1,10 @@
+## [4.0.1](https://github.com/cycjimmy/hello-github-package-npm/compare/v4.0.0...v4.0.1) (2021-01-22)
+
+
+### Bug Fixes
+
+* test ([64d40fc](https://github.com/cycjimmy/hello-github-package-npm/commit/64d40fc2a891c98e9fa584c19f9d8f64803e8e8f))
+
 # [4.0.0](https://github.com/cycjimmy/hello-github-package-npm/compare/v3.0.0...v4.0.0) (2020-11-16)
 
 
