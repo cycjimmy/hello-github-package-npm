@@ -2,7 +2,7 @@
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.helloWorld = factory());
-}(this, (function () { 'use strict';
+})(this, (function () { 'use strict';
 
   var helloTemplate = (function (_ref) {
     var message = _ref.message,
@@ -39,7 +39,7 @@
     }
   }
 
-  var css_248z = ".index__hello,.index__helloWrapper{display:flex;justify-content:center;align-items:center;border:1px solid #000}.index__helloWrapper{width:500px;height:300px;margin:auto}.index__hello{width:80%;height:80%}";
+  var css_248z = ".index__hello,.index__helloWrapper{align-items:center;border:1px solid #000;display:flex;justify-content:center}.index__helloWrapper{height:300px;margin:auto;width:500px}.index__hello{height:80%;width:80%}";
   var _style = {"helloWrapper":"index__helloWrapper","hello":"index__hello"};
   styleInject(css_248z);
 
@@ -59,4 +59,4 @@
 
   return index;
 
-})));
+}));
