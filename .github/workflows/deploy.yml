@@ -27,4 +27,4 @@ jobs:
         with:
           branch: gh-pages
           folder: .publish
-          ssh-key: ${{ secrets.ACCESS_TOKEN }}
+          token: ${{ secrets.ACCESS_TOKEN }}
