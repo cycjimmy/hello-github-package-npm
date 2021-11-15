@@ -1,3 +1,10 @@
+## [5.0.1](https://github.com/cycjimmy/hello-github-package-npm/compare/v5.0.0...v5.0.1) (2021-11-15)
+
+
+### Bug Fixes
+
+* release ([a89df86](https://github.com/cycjimmy/hello-github-package-npm/commit/a89df86f3ae0da193cd0a22557916b8437ea8fab))
+
 # [5.0.0](https://github.com/cycjimmy/hello-github-package-npm/compare/v4.0.1...v5.0.0) (2021-11-15)
 
 
