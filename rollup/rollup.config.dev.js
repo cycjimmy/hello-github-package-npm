@@ -3,7 +3,9 @@ import copy from 'rollup-plugin-copy';
 
 import pkg from '../package.json';
 
-import { input, IS_DEVELOPMENT, IS_DEPLOYMENT, name, plugins } from './rollup.common';
+import {
+  input, IS_DEVELOPMENT, IS_DEPLOYMENT, name, plugins,
+} from './rollup.common';
 
 export default [
   {
@@ -11,26 +13,26 @@ export default [
     output: {
       name,
       file: pkg.browser.replace('.min.js', '.js'),
-      format: 'umd'
+      format: 'umd',
     },
     plugins: [
       ...plugins,
 
-      IS_DEPLOYMENT &&
-        copy({
+      IS_DEPLOYMENT
+        && copy({
           hook: 'writeBundle',
           targets: [
             {
               src: ['static/**/*', 'dist/**.umd.js'],
-              dest: '.publish'
-            }
-          ]
+              dest: '.publish',
+            },
+          ],
         }),
-      IS_DEVELOPMENT &&
-        browsersync({
+      IS_DEVELOPMENT
+        && browsersync({
           server: ['static', 'dist'],
-          watch: true
-        })
-    ]
-  }
+          watch: true,
+        }),
+    ],
+  },
 ];
