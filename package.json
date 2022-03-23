@@ -3,9 +3,13 @@
   "version": "6.0.0",
   "description": "hello github package npm",
   "type": "module",
-  "main": "dist/hello-world.cjs.js",
+  "main": "dist/hello-world.cjs",
   "module": "dist/hello-world.esm.js",
   "browser": "dist/hello-world.umd.min.js",
+  "exports": {
+    "require": "./dist/hello-world.cjs",
+    "import": "./dist/hello-world.esm.js"
+  },
   "scripts": {
     "start": "npm run dev",
     "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --color --forceExit --detectOpenHandles",
