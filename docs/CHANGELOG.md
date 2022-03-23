@@ -1,3 +1,43 @@
+## [6.2.2](https://github.com/cycjimmy/hello-github-package-npm/compare/v6.2.1...v6.2.2) (2022-03-23)
+
+
+### Bug Fixes
+
+* test release ([bccd0b0](https://github.com/cycjimmy/hello-github-package-npm/commit/bccd0b0795d939cf02e720e9d5034a8af1dbc4d1))
+
+## [6.2.1](https://github.com/cycjimmy/hello-github-package-npm/compare/v6.2.0...v6.2.1) (2022-03-23)
+
+
+### Bug Fixes
+
+* fix release ([ef9c569](https://github.com/cycjimmy/hello-github-package-npm/commit/ef9c569487c0e79a38b414232a086c4c92e2de6c))
+
+# [6.2.0](https://github.com/cycjimmy/hello-github-package-npm/compare/v6.1.0...v6.2.0) (2022-03-23)
+
+
+### Features
+
+* refactoring build tasks ([9c59052](https://github.com/cycjimmy/hello-github-package-npm/commit/9c59052aee23312ed110d3ab8f5d1189ef18e206))
+
+# [6.1.0](https://github.com/cycjimmy/hello-github-package-npm/compare/v6.0.0...v6.1.0) (2022-03-23)
+
+
+### Features
+
+* add exports config and change commonJs files extension to `.cjs`; ([2579e0d](https://github.com/cycjimmy/hello-github-package-npm/commit/2579e0dd023650c78307912717de2d7e88e8ad42))
+
+# [6.0.0](https://github.com/cycjimmy/hello-github-package-npm/compare/v5.0.2...v6.0.0) (2022-03-23)
+
+
+### Features
+
+* change to module mode ([1d1c4a8](https://github.com/cycjimmy/hello-github-package-npm/commit/1d1c4a86aa258b23bf2e6986ad171087dc3ef01b))
+
+
+### BREAKING CHANGES
+
+* change to module mode
+
 ## [5.0.2](https://github.com/cycjimmy/hello-github-package-npm/compare/v5.0.1...v5.0.2) (2021-11-15)
 
 

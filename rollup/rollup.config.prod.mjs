@@ -1,8 +1,9 @@
-import pkg from '../package.json';
+/* eslint import/extensions: ["error", "ignorePackages", {"mjs": off}] */
+import pkg from './package.cjs';
 
 import {
   banner, input, name, plugins, terserPlugins,
-} from './rollup.common';
+} from './rollup.common.mjs';
 
 export default [
   {
@@ -20,6 +21,7 @@ export default [
       file: pkg.browser,
       format: 'umd',
       banner,
+      exports: 'default',
     },
     plugins: [...plugins, terserPlugins],
   },
