@@ -1,3 +1,10 @@
+# [6.2.0](https://github.com/cycjimmy/hello-github-package-npm/compare/v6.1.0...v6.2.0) (2022-03-23)
+
+
+### Features
+
+* refactoring build tasks ([9c59052](https://github.com/cycjimmy/hello-github-package-npm/commit/9c59052aee23312ed110d3ab8f5d1189ef18e206))
+
 # [6.1.0](https://github.com/cycjimmy/hello-github-package-npm/compare/v6.0.0...v6.1.0) (2022-03-23)
 
 
