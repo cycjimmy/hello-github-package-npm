@@ -1,10 +1,8 @@
 /* eslint import/no-extraneous-dependencies: ["error", {"devDependencies": true}] */
-const makeConfig = require('@cycjimmy/config-lib/cjs/semanticRelease/15.x/makeConfig.cjs').default;
+const makeCommonConfig = require('@cycjimmy/config-lib/cjs/semanticRelease/15.x/makeCommonConfig.cjs').default;
 const pkg = require('./package.json');
 
-module.exports = makeConfig({
-  changelog: true,
-  changelogFile: 'docs/CHANGELOG.md',
+module.exports = makeCommonConfig({
   exec: true,
   execOptions: {
     prepareCmd: 'npm run package',
@@ -15,10 +13,4 @@ module.exports = makeConfig({
   githubOptions: {
     assets: [pkg.browser],
   },
-  git: true,
-  gitAssets: [
-    'docs/CHANGELOG.md',
-    'package.json',
-    'package-lock.json',
-  ],
 });
