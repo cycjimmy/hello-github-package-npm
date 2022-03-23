@@ -1,3 +1,15 @@
+# [6.0.0](https://github.com/cycjimmy/hello-github-package-npm/compare/v5.0.2...v6.0.0) (2022-03-23)
+
+
+### Features
+
+* change to module mode ([1d1c4a8](https://github.com/cycjimmy/hello-github-package-npm/commit/1d1c4a86aa258b23bf2e6986ad171087dc3ef01b))
+
+
+### BREAKING CHANGES
+
+* change to module mode
+
 ## [5.0.2](https://github.com/cycjimmy/hello-github-package-npm/compare/v5.0.1...v5.0.2) (2021-11-15)
 
 
