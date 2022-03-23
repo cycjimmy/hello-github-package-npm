@@ -3,24 +3,19 @@
 import path from 'path';
 import fs from 'fs-extra';
 
-const { copy } = fs;
+const { copySync } = fs;
 
-Promise.resolve()
-  .then(() => copy(
-    path.resolve('dist'),
-    path.resolve('package', 'dist'),
-  ))
-  .then(() => copy(
-    path.resolve('README.md'),
-    path.resolve('package', 'README.md'),
-  ))
-  .then(() => copy(
-    path.resolve('LICENSE'),
-    path.resolve('package', 'LICENSE'),
-  ))
-  .then(() => {
-    console.log('copyFiles success!');
-  })
-  .catch((err) => {
-    console.error(err);
-  });
+copySync(
+  path.resolve('dist'),
+  path.resolve('.release', 'dist'),
+);
+copySync(
+  path.resolve('README.md'),
+  path.resolve('.release', 'README.md'),
+);
+copySync(
+  path.resolve('LICENSE'),
+  path.resolve('.release', 'LICENSE'),
+);
+
+console.log('copyFiles success!');

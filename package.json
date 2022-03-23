@@ -21,7 +21,7 @@
     "build:prod": "cross-env NODE_ENV=production rollup -c rollup/rollup.config.prod.mjs",
     "build:prod:umd": "cross-env NODE_ENV=production rollup -c rollup/rollup.config.dev.mjs",
     "build:deployment": "cross-env NODE_ENV=deployment rollup -c rollup/rollup.config.dev.mjs",
-    "package": "trash package && npm run build && node tasks/copyFiles.js && node tasks/handlePackageJson.js"
+    "package": "trash .release && npm run build && node tasks/copyFiles.js && node tasks/handlePackageJson.js"
   },
   "repository": {
     "type": "git",

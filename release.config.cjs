@@ -12,6 +12,6 @@ module.exports = makeCommonConfig({
     prepareCmd: 'npm run package',
   },
   npmOptions: {
-    pkgRoot: 'package',
+    pkgRoot: '.release',
   },
 });
