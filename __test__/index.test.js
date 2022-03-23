@@ -1,3 +1,4 @@
+/* eslint no-undef: off */
 import helloWorld from '../src/index';
 
 describe('helloWorld', () => {
