@@ -1,3 +1,10 @@
+# [6.1.0](https://github.com/cycjimmy/hello-github-package-npm/compare/v6.0.0...v6.1.0) (2022-03-23)
+
+
+### Features
+
+* add exports config and change commonJs files extension to `.cjs`; ([2579e0d](https://github.com/cycjimmy/hello-github-package-npm/commit/2579e0dd023650c78307912717de2d7e88e8ad42))
+
 # [6.0.0](https://github.com/cycjimmy/hello-github-package-npm/compare/v5.0.2...v6.0.0) (2022-03-23)
 
 
