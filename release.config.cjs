@@ -1,5 +1,6 @@
 /* eslint import/no-extraneous-dependencies: ["error", {"devDependencies": true}] */
 const makeConfig = require('@cycjimmy/config-lib/cjs/semanticRelease/15.x/makeConfig.cjs').default;
+const pkg = require('./package.json');
 
 module.exports = makeConfig({
   changelog: true,
@@ -19,5 +20,5 @@ module.exports = makeConfig({
     'docs/CHANGELOG.md',
     'package.json',
     'package-lock.json',
-  ]
+  ],
 });
