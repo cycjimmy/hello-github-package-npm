@@ -1,3 +1,10 @@
+## [6.2.3](https://github.com/cycjimmy/hello-github-package-npm/compare/v6.2.2...v6.2.3) (2022-03-25)
+
+
+### Bug Fixes
+
+* fix root version after releasing ([990dd92](https://github.com/cycjimmy/hello-github-package-npm/commit/990dd92aacd6c75de0bc6226eb3fad50ba59e882))
+
 ## [6.2.2](https://github.com/cycjimmy/hello-github-package-npm/compare/v6.2.1...v6.2.2) (2022-03-23)
 
 
