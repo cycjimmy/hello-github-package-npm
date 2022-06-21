@@ -1,3 +1,10 @@
+## [6.2.7](https://github.com/cycjimmy/hello-github-package-npm/compare/v6.2.6...v6.2.7) (2022-06-21)
+
+
+### Bug Fixes
+
+* remove @rollup/plugin-commonjs ([2fe20db](https://github.com/cycjimmy/hello-github-package-npm/commit/2fe20dbc69bfc42fdef9399fda3da0b4c35436e4))
+
 ## [6.2.6](https://github.com/cycjimmy/hello-github-package-npm/compare/v6.2.5...v6.2.6) (2022-03-26)
 
 
