@@ -1,3 +1,10 @@
+## [6.2.9](https://github.com/cycjimmy/hello-github-package-npm/compare/v6.2.8...v6.2.9) (2023-08-31)
+
+
+### Bug Fixes
+
+* use node 18 ([4f4ae91](https://github.com/cycjimmy/hello-github-package-npm/commit/4f4ae91f57e4d0fdf34aab35e414e49e3385e743))
+
 ## [6.2.8](https://github.com/cycjimmy/hello-github-package-npm/compare/v6.2.7...v6.2.8) (2023-08-31)
 
 
