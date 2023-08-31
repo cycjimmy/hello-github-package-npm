@@ -1,3 +1,10 @@
+## [6.2.8](https://github.com/cycjimmy/hello-github-package-npm/compare/v6.2.7...v6.2.8) (2023-08-31)
+
+
+### Bug Fixes
+
+* test semantic-release-action@v4 ([2e9eab0](https://github.com/cycjimmy/hello-github-package-npm/commit/2e9eab0a0986f82374ba6e1f84739f95d1ab718b))
+
 ## [6.2.7](https://github.com/cycjimmy/hello-github-package-npm/compare/v6.2.6...v6.2.7) (2022-06-21)
 
 
