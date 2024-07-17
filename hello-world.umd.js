@@ -13,7 +13,7 @@
   function styleInject(css, ref) {
     if (ref === void 0) ref = {};
     var insertAt = ref.insertAt;
-    if (!css || typeof document === 'undefined') {
+    if (typeof document === 'undefined') {
       return;
     }
     var head = document.head || document.getElementsByTagName('head')[0];
@@ -36,7 +36,7 @@
   }
 
   var css_248z = ".index__hello,.index__helloWrapper{align-items:center;border:1px solid #000;display:flex;justify-content:center}.index__helloWrapper{height:300px;margin:auto;width:500px}.index__hello{height:80%;width:80%}";
-  var _style = {"helloWrapper":"index__helloWrapper","hello":"index__hello"};
+  var _style = {"hello":"index__hello","helloWrapper":"index__helloWrapper"};
   styleInject(css_248z);
 
   var helloWorld = function helloWorld() {
