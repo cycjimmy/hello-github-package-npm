@@ -1,3 +1,10 @@
+# [6.3.0](https://github.com/cycjimmy/hello-github-package-npm/compare/v6.2.9...v6.3.0) (2024-07-17)
+
+
+### Features
+
+* upgrade rollup to v4 ([64e0325](https://github.com/cycjimmy/hello-github-package-npm/commit/64e0325004ef990e7a6c1afc947f378bee371870))
+
 ## [6.2.9](https://github.com/cycjimmy/hello-github-package-npm/compare/v6.2.8...v6.2.9) (2023-08-31)
 
 
