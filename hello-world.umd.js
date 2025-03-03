@@ -11,7 +11,7 @@
   });
 
   function styleInject(css, ref) {
-    if (ref === undefined) ref = {};
+    if (ref === void 0) ref = {};
     var insertAt = ref.insertAt;
     if (typeof document === 'undefined') {
       return;
