@@ -1,3 +1,10 @@
+## [6.3.5](https://github.com/cycjimmy/hello-github-package-npm/compare/v6.3.4...v6.3.5) (2026-01-05)
+
+
+### Bug Fixes
+
+* **ci:** 更新 Node.js 版本至 24 并设置 fetch-depth 为 0 ([27107c2](https://github.com/cycjimmy/hello-github-package-npm/commit/27107c262ae764687008e4ac2e3734fd9cb09e8e))
+
 ## [6.3.4](https://github.com/cycjimmy/hello-github-package-npm/compare/v6.3.3...v6.3.4) (2026-01-05)
 
 
