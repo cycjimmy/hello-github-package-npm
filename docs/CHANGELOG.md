@@ -1,3 +1,10 @@
+## [6.3.6](https://github.com/cycjimmy/hello-github-package-npm/compare/v6.3.5...v6.3.6) (2026-01-05)
+
+
+### Bug Fixes
+
+* **ci:** 添加 `packages: write` 权限到 GitHub Actions 工作流 ([f3664a5](https://github.com/cycjimmy/hello-github-package-npm/commit/f3664a536ffcac395f294a2470b6015bd9666b55))
+
 ## [6.3.5](https://github.com/cycjimmy/hello-github-package-npm/compare/v6.3.4...v6.3.5) (2026-01-05)
 
 
