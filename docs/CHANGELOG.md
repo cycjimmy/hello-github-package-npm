@@ -1,3 +1,10 @@
+## [6.3.3](https://github.com/cycjimmy/hello-github-package-npm/compare/v6.3.2...v6.3.3) (2026-01-05)
+
+
+### Bug Fixes
+
+* **ci:** 添加 NPM_TOKEN 环境变量到 GitHub Actions 工作流 ([f3614c8](https://github.com/cycjimmy/hello-github-package-npm/commit/f3614c8c86d4ffdca8d04d8812faa584c072b132))
+
 ## [6.3.2](https://github.com/cycjimmy/hello-github-package-npm/compare/v6.3.1...v6.3.2) (2026-01-05)
 
 
