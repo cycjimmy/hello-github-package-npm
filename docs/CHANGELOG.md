@@ -1,3 +1,10 @@
+## [6.3.4](https://github.com/cycjimmy/hello-github-package-npm/compare/v6.3.3...v6.3.4) (2026-01-05)
+
+
+### Bug Fixes
+
+* **ci:** 移除 Semantic Release 测试步骤 ([8fd363f](https://github.com/cycjimmy/hello-github-package-npm/commit/8fd363f73bbd13a1bf71255d59db82d081dc721a))
+
 ## [6.3.3](https://github.com/cycjimmy/hello-github-package-npm/compare/v6.3.2...v6.3.3) (2026-01-05)
 
 
