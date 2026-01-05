@@ -1,3 +1,14 @@
+## [6.3.1](https://github.com/cycjimmy/hello-github-package-npm/compare/v6.3.0...v6.3.1) (2026-01-05)
+
+
+### Bug Fixes
+
+* **ci:** add necessary permissions to GitHub Actions workflows ([e8b7025](https://github.com/cycjimmy/hello-github-package-npm/commit/e8b70257a64a223f2f5ebeb8cff0db6104292518))
+* **ci:** update Node.js version to 20 in GitHub Actions workflows ([73b7919](https://github.com/cycjimmy/hello-github-package-npm/commit/73b791967933647cd96ee42c19b951430a1ae7c1))
+* **ci:** update Node.js version to 24 in GitHub Actions workflows ([730993a](https://github.com/cycjimmy/hello-github-package-npm/commit/730993acb6e6df7392cdbb95920c5c1ba86963f8))
+* **ci:** update permissions to `contents: write` in GitHub Actions workflows ([aa78cbf](https://github.com/cycjimmy/hello-github-package-npm/commit/aa78cbf938e9e9e9cbb26e61abf0881c22ef7450))
+* **ci:** 移除发布工作流中的 NPM_TOKEN 环境变量 ([6719ee8](https://github.com/cycjimmy/hello-github-package-npm/commit/6719ee8357d2109025e861e28e684dc61baef5ad))
+
 # [6.3.0](https://github.com/cycjimmy/hello-github-package-npm/compare/v6.2.9...v6.3.0) (2024-07-17)
 
 
