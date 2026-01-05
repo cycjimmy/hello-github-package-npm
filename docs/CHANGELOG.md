@@ -1,3 +1,10 @@
+## [6.3.2](https://github.com/cycjimmy/hello-github-package-npm/compare/v6.3.1...v6.3.2) (2026-01-05)
+
+
+### Bug Fixes
+
+* **ci:** add `issues` and `pull-requests` permissions and set fetch-depth to 0 in GitHub Actions workflows ([69b59fc](https://github.com/cycjimmy/hello-github-package-npm/commit/69b59fc09e0552a9d1905d17fc18bf6fe8aa3f6b))
+
 ## [6.3.1](https://github.com/cycjimmy/hello-github-package-npm/compare/v6.3.0...v6.3.1) (2026-01-05)
 
 

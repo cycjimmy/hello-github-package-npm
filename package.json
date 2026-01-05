@@ -1,6 +1,6 @@
 {
   "name": "@cycjimmy/hello-github-package-npm",
-  "version": "6.3.1",
+  "version": "6.3.2",
   "description": "hello github package npm",
   "type": "module",
   "main": "dist/hello-world.cjs",
