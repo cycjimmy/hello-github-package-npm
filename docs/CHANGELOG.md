@@ -1,3 +1,10 @@
+## [6.3.7](https://github.com/cycjimmy/hello-github-package-npm/compare/v6.3.6...v6.3.7) (2026-10-10)
+
+
+### Bug Fixes
+
+* **ci:** 升级 cycjimmy/semantic-release-action 至 v7 ([3a7060e](https://github.com/cycjimmy/hello-github-package-npm/commit/3a7060e0ff30d47eba939dd3e455c5eaea2e4f2b))
+
 ## [6.3.6](https://github.com/cycjimmy/hello-github-package-npm/compare/v6.3.5...v6.3.6) (2026-01-05)
 
 
