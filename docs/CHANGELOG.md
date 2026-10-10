@@ -1,3 +1,10 @@
+## [6.3.9](https://github.com/cycjimmy/hello-github-package-npm/compare/v6.3.8...v6.3.9) (2026-10-10)
+
+
+### Reverts
+
+* Revert "fix(ci): 固定 @semantic-release/github@12.0.10 修复 Release 附件上传" ([fc6796a](https://github.com/cycjimmy/hello-github-package-npm/commit/fc6796ac5330478dacee02ac6c4a89202dbbe1bf))
+
 ## [6.3.8](https://github.com/cycjimmy/hello-github-package-npm/compare/v6.3.7...v6.3.8) (2026-10-10)
 
 
