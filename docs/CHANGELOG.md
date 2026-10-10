@@ -1,3 +1,10 @@
+## [6.3.8](https://github.com/cycjimmy/hello-github-package-npm/compare/v6.3.7...v6.3.8) (2026-10-10)
+
+
+### Bug Fixes
+
+* **ci:** 固定 @semantic-release/github@12.0.10 修复 Release 附件上传 ([c6ed680](https://github.com/cycjimmy/hello-github-package-npm/commit/c6ed680be7071b6d3904e47c6a0a25350eadb1f3))
+
 ## [6.3.7](https://github.com/cycjimmy/hello-github-package-npm/compare/v6.3.6...v6.3.7) (2026-10-10)
 
 
