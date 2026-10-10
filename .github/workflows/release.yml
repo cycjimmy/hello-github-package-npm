@@ -79,10 +79,14 @@ jobs:
                 prerelease: true
               }
             ]
+          # 固定 @semantic-release/github 版本，修复 Release 附件上传报
+          # `invalid content-length header` 的问题（action 内置 lockfile 仍为 12.0.6），
+          # 详见 semantic-release/github#1224，12.0.9 起修复
           extra_plugins: |
             @semantic-release/git
             @semantic-release/changelog
             @semantic-release/exec
+            @semantic-release/github@12.0.10
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
