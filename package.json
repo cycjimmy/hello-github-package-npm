@@ -46,7 +46,7 @@
     "@cycjimmy/sass-lib": "^2.3.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.24.9",
+    "@babel/core": "^8.0.7",
     "@babel/preset-env": "^7.24.8",
     "@cycjimmy/config-lib": "^3.2.1",
     "@rollup/plugin-babel": "^6.0.4",
