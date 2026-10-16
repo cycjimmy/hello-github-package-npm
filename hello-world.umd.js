@@ -35,7 +35,7 @@
     }
   }
 
-  var css_248z = ".index__hello,.index__helloWrapper{align-items:center;border:1px solid #000;display:flex;justify-content:center}.index__helloWrapper{height:300px;margin:auto;width:500px}.index__hello{height:80%;width:80%}";
+  var css_248z = ".index__hello,.index__helloWrapper{-ms-flex-pack:center;-ms-flex-align:center;-webkit-align-items:center;align-items:center;border:1px solid #000;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-justify-content:center;justify-content:center}.index__helloWrapper{height:300px;margin:auto;width:500px}.index__hello{height:80%;width:80%}";
   var _style = {"hello":"index__hello","helloWrapper":"index__helloWrapper"};
   styleInject(css_248z);
 
