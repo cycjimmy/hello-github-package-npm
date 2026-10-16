@@ -1,3 +1,10 @@
+## [6.3.11](https://github.com/cycjimmy/hello-github-package-npm/compare/v6.3.10...v6.3.11) (2026-10-16)
+
+
+### Bug Fixes
+
+* **package:** 移除未使用的依赖 @cycjimmy/awesome-js-funcs ([8996287](https://github.com/cycjimmy/hello-github-package-npm/commit/8996287c3ad8b1ee0ec88ad5d9cc806b082a989d))
+
 ## [6.3.10](https://github.com/cycjimmy/hello-github-package-npm/compare/v6.3.9...v6.3.10) (2026-10-16)
 
 
