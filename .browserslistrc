@@ -1,4 +1,4 @@
-[production staging]
+[production staging deployment]
 ie >= 10
 ie_mob >= 10
 ff >= 30
