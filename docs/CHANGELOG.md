@@ -1,3 +1,11 @@
+## [6.3.10](https://github.com/cycjimmy/hello-github-package-npm/compare/v6.3.9...v6.3.10) (2026-10-16)
+
+
+### Bug Fixes
+
+* **build:** 将 deployment 并入生产浏览器目标组 ([524270e](https://github.com/cycjimmy/hello-github-package-npm/commit/524270e35a1f884ed6284bddc5338888171f9e97))
+* **ci:** 发布 GitHub Packages 时按 release 渠道传递 dist-tag ([4df95da](https://github.com/cycjimmy/hello-github-package-npm/commit/4df95da09157776cc7c67db78c855d9fad747d02))
+
 ## [6.3.9](https://github.com/cycjimmy/hello-github-package-npm/compare/v6.3.8...v6.3.9) (2026-10-10)
 
 
