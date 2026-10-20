@@ -14,22 +14,64 @@ on:
   schedule:
     - cron: 0 2 * * 0
 
+permissions:
+  contents: write
+
 jobs:
   test:
     runs-on: ${{ matrix.os }}
     strategy:
+      fail-fast: false
       matrix:
         node: [ 24 ]
         os: [ubuntu-latest, windows-latest, macOS-latest]
 
     steps:
-      - uses: actions/checkout@v7
+      - name: Checkout
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
-      - uses: actions/setup-node@v7
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
         with:
           node-version: ${{ matrix.node }}
-      - run: npm ci
-      - run: npm test
-      - run: npm run package
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run unit tests
+        run: npm test
+
+      - name: Build package
+        run: npm run package
+
+      - name: Semantic Release Test
+        uses: cycjimmy/semantic-release-action@v8
+        with:
+          dry_run: true
+          branches: |
+            [
+              '+([0-9])?(.{+([0-9]),x}).x',
+              'master',
+              'main',
+              'next',
+              'next-major',
+              {
+                name: 'beta',
+                prerelease: true
+              },
+              {
+                name: 'alpha',
+                prerelease: true
+              }
+            ]
+          extra_plugins: |
+            @semantic-release/git
+            @semantic-release/changelog
+            @semantic-release/exec
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SKIP_NPM_AUTH: 'true'
 
