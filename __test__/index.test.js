@@ -1,8 +1,7 @@
-/* eslint no-undef: off */
-import helloWorld from '../src/index';
+import helloWorld from '../src/index'
 
 describe('helloWorld', () => {
-  test('helloWorld() return string', () => {
-    expect(typeof helloWorld.helloWorld()).toBe('string');
-  });
-});
+  it('helloWorld() return string', () => {
+    expect(typeof helloWorld.helloWorld()).toBe('string')
+  })
+})
