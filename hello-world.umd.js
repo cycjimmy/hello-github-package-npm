@@ -4,12 +4,6 @@
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.helloWorld = factory());
 })(this, (function () { 'use strict';
 
-  var helloTemplate = (function (_ref) {
-    var message = _ref.message,
-      _style = _ref._style;
-    return "\n<div class=\"".concat(_style.helloWrapper, "\">\n  <p class=\"").concat(_style.hello, "\">").concat(message, "</p>\n</div>\n");
-  });
-
   function styleInject(css, ref) {
     if (ref === void 0) ref = {};
     var insertAt = ref.insertAt;
@@ -38,6 +32,12 @@
   var css_248z = ".index__hello,.index__helloWrapper{-ms-flex-pack:center;-ms-flex-align:center;-webkit-align-items:center;align-items:center;border:1px solid #000;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-justify-content:center;justify-content:center}.index__helloWrapper{height:300px;margin:auto;width:500px}.index__hello{height:80%;width:80%}";
   var _style = {"hello":"index__hello","helloWrapper":"index__helloWrapper"};
   styleInject(css_248z);
+
+  var helloTemplate = (function (_ref) {
+    var message = _ref.message,
+      _style = _ref._style;
+    return "\n<div class=\"".concat(_style.helloWrapper, "\">\n  <p class=\"").concat(_style.hello, "\">").concat(message, "</p>\n</div>\n");
+  });
 
   var helloWorld = function helloWorld() {
     return 'hello world!';
