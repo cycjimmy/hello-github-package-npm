@@ -1,21 +1,36 @@
 {
   "name": "@cycjimmy/hello-github-package-npm",
+  "type": "module",
   "version": "6.3.11",
   "description": "hello github package npm",
-  "type": "module",
+  "browser": "dist/hello-world.umd.min.js",
+  "author": "cycjimmy <cycjimmy@gmail.com> (https://github.com/cycjimmy)",
+  "license": "MIT",
+  "homepage": "https://github.com/cycjimmy/hello-github-package-npm#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cycjimmy/hello-github-package-npm.git"
+  },
+  "bugs": {
+    "url": "https://github.com/cycjimmy/hello-github-package-npm/issues"
+  },
+  "keywords": [
+    "github",
+    "package",
+    "npm"
+  ],
+  "exports": {
+    "import": "./dist/hello-world.esm.js",
+    "require": "./dist/hello-world.cjs"
+  },
   "main": "dist/hello-world.cjs",
   "module": "dist/hello-world.esm.js",
-  "browser": "dist/hello-world.umd.min.js",
-  "exports": {
-    "require": "./dist/hello-world.cjs",
-    "import": "./dist/hello-world.esm.js"
-  },
   "scripts": {
     "start": "npm run dev",
     "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --color --forceExit --detectOpenHandles",
     "coveralls": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --color --forceExit --detectOpenHandles --coverage",
-    "lint": "eslint --ext .js,.cjs,.mjs -c .eslintrc .",
-    "lint:fix": "eslint --ext .js,.cjs,.mjs --fix -c .eslintrc . --fix",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
     "dev": "cross-env NODE_ENV=development rollup -c rollup/rollup.config.dev.mjs --watch",
     "build": "trash dist && npm run build:prod:umd && npm run build:prod",
     "build:prod": "cross-env NODE_ENV=production rollup -c rollup/rollup.config.prod.mjs",
@@ -23,21 +38,6 @@
     "build:deployment": "cross-env NODE_ENV=deployment rollup -c rollup/rollup.config.dev.mjs",
     "package": "trash .release && npm run build && node tasks/copyFiles.js && node tasks/handlePackageJson.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/cycjimmy/hello-github-package-npm.git"
-  },
-  "keywords": [
-    "github",
-    "package",
-    "npm"
-  ],
-  "author": "cycjimmy <cycjimmy@gmail.com> (https://github.com/cycjimmy)",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/cycjimmy/hello-github-package-npm/issues"
-  },
-  "homepage": "https://github.com/cycjimmy/hello-github-package-npm#readme",
   "publishConfig": {
     "access": "public"
   },
@@ -45,6 +45,7 @@
     "@cycjimmy/sass-lib": "^2.3.0"
   },
   "devDependencies": {
+    "@antfu/eslint-config": "^9.5.1",
     "@babel/core": "^7.24.9",
     "@babel/preset-env": "^7.24.8",
     "@cycjimmy/config-lib": "^3.2.1",
@@ -57,10 +58,9 @@
     "babel-jest": "^30.4.1",
     "coveralls": "^3.1.1",
     "cross-env": "^10.1.0",
-    "eslint": "^8.57.0",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.29.1",
+    "eslint": "^10.13.0",
     "fs-extra": "^11.2.0",
+    "globals": "^17.13.0",
     "jest": "^30.5.2",
     "jest-environment-jsdom": "^30.3.0",
     "rollup": "^4.18.1",
@@ -69,5 +69,10 @@
     "rollup-plugin-postcss": "^4.0.2",
     "sass": "^1.77.8",
     "trash-cli": "^7.2.0"
+  },
+  "overrides": {
+    "@rollup/plugin-eslint": {
+      "eslint": "$eslint"
+    }
   }
 }
