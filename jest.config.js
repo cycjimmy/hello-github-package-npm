@@ -13,4 +13,4 @@ export default {
       statements: 50,
     },
   },
-};
+}

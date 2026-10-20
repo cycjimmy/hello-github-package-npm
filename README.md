@@ -7,7 +7,7 @@
 [![NPM bundle size][npm-bundle-size-image]][npm-url]
 [![npm download][download-image]][download-url]
 [![jsdelivr][jsdelivr-image]][jsdelivr-url]
-![][workflows-badge-image]
+![workflows badge][workflows-badge-image]
 [![build status][travis-image]][travis-url]
 [![libraries dependency status][libraries-status-image]][libraries-status-url]
 [![libraries sourcerank][libraries-sourcerank-image]][libraries-sourcerank-url]
