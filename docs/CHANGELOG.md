@@ -1,3 +1,17 @@
+# [7.0.0](https://github.com/cycjimmy/hello-github-package-npm/compare/v6.3.11...v7.0.0) (2026-10-21)
+
+
+* chore(eslint)!: 标记 lint 体系升级为破坏性变更 ([a5d91cb](https://github.com/cycjimmy/hello-github-package-npm/commit/a5d91cbe987bbcf1e333c4e5c0c43237ba8421bb))
+
+
+### BREAKING CHANGES
+
+* 仓库 lint 体系由 eslint 8 + airbnb-base（legacy .eslintrc）
+迁移至 eslint 10 + @antfu/eslint-config（flat config），代码风格统一为 antfu
+默认规范（单引号、无分号）。包对外 API 与构建产物行为不变，但工程约束不再
+兼容旧体系：legacy eslintrc/.eslintignore 配置失效，本地与 CI 的 Node 版本
+需满足 eslint 10 的 engines 要求（^20.19.0 || ^22.13.0 || >=24）。
+
 ## [6.3.11](https://github.com/cycjimmy/hello-github-package-npm/compare/v6.3.10...v6.3.11) (2026-10-16)
 
 
