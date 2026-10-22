@@ -1,3 +1,4 @@
+import { createRequire } from 'node:module'
 import process from 'node:process'
 import myBanner from '@cycjimmy/config-lib/esm/chore/myBanner.js'
 import terserOption from '@cycjimmy/config-lib/esm/terser/4.x/production.js'
@@ -10,7 +11,7 @@ import terser from '@rollup/plugin-terser'
 import autoprefixer from 'autoprefixer'
 import postcss from 'rollup-plugin-postcss'
 
-import pkg from '../package.cjs'
+const pkg = createRequire(import.meta.url)('../package.json')
 
 export const IS_DEVELOPMENT = process.env.NODE_ENV === 'development'
 export const IS_PRODUCTION = process.env.NODE_ENV === 'production'

@@ -1,4 +1,4 @@
-import pkg from '../package.cjs'
+import { createRequire } from 'node:module'
 
 import {
   banner,
@@ -8,13 +8,12 @@ import {
   terserPlugins,
 } from './rollup.common.mjs'
 
+const pkg = createRequire(import.meta.url)('../package.json')
+
 export default [
   {
     input,
-    output: [
-      { file: pkg.main, format: 'cjs', exports: 'default' },
-      { file: pkg.module, format: 'es', exports: 'default' },
-    ],
+    output: { file: pkg.module, format: 'es', exports: 'default' },
     plugins,
   },
   {

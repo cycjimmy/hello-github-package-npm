@@ -1,7 +1,7 @@
+import { createRequire } from 'node:module'
+
 import browsersync from 'rollup-plugin-browsersync'
 import copy from 'rollup-plugin-copy'
-
-import pkg from '../package.cjs'
 
 import {
   input,
@@ -10,6 +10,8 @@ import {
   name,
   plugins,
 } from './rollup.common.mjs'
+
+const pkg = createRequire(import.meta.url)('../package.json')
 
 export default [
   {

@@ -21,9 +21,9 @@
   ],
   "exports": {
     "import": "./dist/hello-world.esm.js",
-    "require": "./dist/hello-world.cjs"
+    "default": "./dist/hello-world.esm.js"
   },
-  "main": "dist/hello-world.cjs",
+  "main": "dist/hello-world.esm.js",
   "module": "dist/hello-world.esm.js",
   "scripts": {
     "start": "npm run dev",
