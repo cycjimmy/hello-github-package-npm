@@ -1,7 +1,7 @@
 {
   "name": "@cycjimmy/hello-github-package-npm",
   "type": "module",
-  "version": "7.0.0",
+  "version": "8.0.0",
   "description": "hello github package npm",
   "browser": "dist/hello-world.umd.min.js",
   "author": "cycjimmy <cycjimmy@gmail.com> (https://github.com/cycjimmy)",

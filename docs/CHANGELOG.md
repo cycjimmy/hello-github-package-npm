@@ -1,3 +1,13 @@
+# [8.0.0](https://github.com/cycjimmy/hello-github-package-npm/compare/v7.0.0...v8.0.0) (2026-10-22)
+
+
+* refactor!: drop CommonJS output and migrate release config to ESM ([15d7138](https://github.com/cycjimmy/hello-github-package-npm/commit/15d7138b059a4a9a76e94b833224ccf4562ee88b))
+
+
+### BREAKING CHANGES
+
+* the package now ships ESM only; the require export and dist/hello-world.cjs are removed.
+
 # [7.0.0](https://github.com/cycjimmy/hello-github-package-npm/compare/v6.3.11...v7.0.0) (2026-10-21)
 
 
