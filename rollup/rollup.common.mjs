@@ -29,6 +29,12 @@ export const plugins = [
     autoModules: false,
     minimize: true,
     plugins: [autoprefixer],
+    // rollup-plugin-postcss still uses the legacy sass JS API.
+    use: {
+      sass: {
+        silenceDeprecations: ['legacy-js-api'],
+      },
+    },
   }),
   eslint({
     fix: true,

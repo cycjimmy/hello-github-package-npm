@@ -42,7 +42,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@cycjimmy/sass-lib": "^2.3.0"
+    "@cycjimmy/sass-lib": "^4.0.0"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^9.5.1",
