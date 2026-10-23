@@ -98,6 +98,9 @@ export default defineConfig(({ mode }) => {
       // Inline postcss config keeps the build setup in a single file.
       postcss: { plugins: [autoprefixer] },
       modules: {
+        // Kebab-case class names in SCSS with camelCase JS keys, so the
+        // exported _style shape stays identical to the old rollup builds.
+        localsConvention: 'camelCaseOnly',
         generateScopedName: (mode === 'development' || mode === 'deployment')
           ? '[name]__[local]' // same as the old development/deployment builds
           : '[hash:base64:10]', // same as the old production builds
