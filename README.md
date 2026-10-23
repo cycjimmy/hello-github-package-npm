@@ -13,7 +13,7 @@
 [![libraries sourcerank][libraries-sourcerank-image]][libraries-sourcerank-url]
 [![Coverage Status][coverage-image]][coverage-url]
 [![Release date][release-date-image]][release-url]
-[![rollup][rollup-image]][rollup-url]
+[![vite][vite-image]][vite-url]
 [![semantic-release][semantic-image]][semantic-url]
 [![jest][jest-image]][jest-url]
 [![npm license][license-image]][download-url]
@@ -49,8 +49,8 @@ This is a private javascript lib template for automatic test, release and so on.
 [release-date-image]: https://img.shields.io/github/release-date/cycjimmy/hello-github-package-npm
 [release-url]: https://github.com/cycjimmy/hello-github-package-npm/releases
 
-[rollup-image]: https://img.shields.io/github/package-json/dependency-version/cycjimmy/hello-github-package-npm/dev/rollup
-[rollup-url]: https://github.com/rollup/rollup
+[vite-image]: https://img.shields.io/github/package-json/dependency-version/cycjimmy/hello-github-package-npm/dev/vite
+[vite-url]: https://github.com/vitejs/vite
 
 [semantic-image]: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg
 [semantic-url]: https://github.com/semantic-release/semantic-release
