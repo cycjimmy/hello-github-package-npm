@@ -1,57 +1,25 @@
-(function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
-  typeof define === 'function' && define.amd ? define(factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.helloWorld = factory());
-})(this, (function () { 'use strict';
-
-  function styleInject(css, ref) {
-    if (ref === void 0) ref = {};
-    var insertAt = ref.insertAt;
-    if (typeof document === 'undefined') {
-      return;
-    }
-    var head = document.head || document.getElementsByTagName('head')[0];
-    var style = document.createElement('style');
-    style.type = 'text/css';
-    if (insertAt === 'top') {
-      if (head.firstChild) {
-        head.insertBefore(style, head.firstChild);
-      } else {
-        head.appendChild(style);
-      }
-    } else {
-      head.appendChild(style);
-    }
-    if (style.styleSheet) {
-      style.styleSheet.cssText = css;
-    } else {
-      style.appendChild(document.createTextNode(css));
-    }
-  }
-
-  var css_248z = ".index__hello,.index__helloWrapper{-ms-flex-pack:center;-ms-flex-align:center;-webkit-align-items:center;align-items:center;border:1px solid #000;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-justify-content:center;justify-content:center}.index__helloWrapper{height:300px;margin:auto;width:500px}.index__hello{height:80%;width:80%}";
-  var _style = {"helloWrapper":"index__helloWrapper","hello":"index__hello"};
-  styleInject(css_248z);
-
-  var helloTemplate = (function (_ref) {
-    var message = _ref.message,
-      _style = _ref._style;
-    return "\n<div class=\"".concat(_style.helloWrapper, "\">\n  <p class=\"").concat(_style.hello, "\">").concat(message, "</p>\n</div>\n");
-  });
-
-  var helloWorld = function helloWorld() {
-    return 'hello world!';
-  };
-  var helloElement = helloTemplate({
-    message: 'hello world!',
-    _style: _style
-  });
-  var index = {
-    helloWorld: helloWorld,
-    helloElement: helloElement,
-    _style: _style
-  };
-
-  return index;
-
-}));
+;(function(){try{if(typeof document!='undefined'){var e=document.createElement('style');e.appendChild(document.createTextNode(".index-module__hello-wrapper,.index-module__hello{justify-content:center;align-items:center;display:flex}.index-module__hello,.index-module__hello-wrapper{border:1px solid #000}.index-module__hello-wrapper{width:500px;height:300px;margin:auto}.index-module__hello{width:80%;height:80%}"));document.head.appendChild(e)}}catch(t){console.error('inject-css',t)}})();
+(function(global, factory) {
+	typeof exports === "object" && typeof module !== "undefined" ? module.exports = factory() : typeof define === "function" && define.amd ? define([], factory) : (global = typeof globalThis !== "undefined" ? globalThis : global || self, global.helloWorld = factory());
+})(this, function() {
+	var index_module_default = {
+		helloWrapper: "index-module__hello-wrapper",
+		hello: "index-module__hello"
+	};
+	// src/template/helloTemplate.js
+	var helloTemplate_default = ({ message, _style }) => `
+<div class="${_style.helloWrapper}">
+  <p class="${_style.hello}">${message}</p>
+</div>
+`;
+	// src/index.js
+	var helloWorld = () => "hello world!";
+	return {
+		helloWorld,
+		helloElement: helloTemplate_default({
+			message: "hello world!",
+			_style: index_module_default
+		}),
+		_style: index_module_default
+	};
+});
