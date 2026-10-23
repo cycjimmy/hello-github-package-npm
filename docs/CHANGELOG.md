@@ -1,3 +1,19 @@
+# [9.0.0](https://github.com/cycjimmy/hello-github-package-npm/compare/v8.0.0...v9.0.0) (2026-10-23)
+
+
+* build!: replace rollup with vite ([5d43c51](https://github.com/cycjimmy/hello-github-package-npm/commit/5d43c5132c66440d69b8648c5d18cc1a5c5cd6c2))
+
+
+### BREAKING CHANGES
+
+* Build toolchain migrated from Rollup 4 to Vite 8
+(Rolldown). JS is now transpiled by esbuild targeting ES2015, so
+legacy browsers (IE10/Chrome40 and older) are no longer supported
+and CSS no longer ships with legacy flexbox prefixes. Requires
+Node.js >= 20.19. The CSS Modules source file is renamed to
+*.module.scss and dev-mode class names are prefixed 'index-module__'
+instead of 'index__'.
+
 # [8.0.0](https://github.com/cycjimmy/hello-github-package-npm/compare/v7.0.0...v8.0.0) (2026-10-22)
 
 
