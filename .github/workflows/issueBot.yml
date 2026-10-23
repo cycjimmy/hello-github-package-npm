@@ -1,0 +1,93 @@
+name: Issue Bot
+
+# Rule-based triage for newly opened issues.
+# All untrusted issue content is passed through environment variables (never
+# interpolated into a shell command) so it cannot break out of the workflow.
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  issues: write
+
+jobs:
+  triage:
+    name: Triage new issue
+    runs-on: ubuntu-latest
+    steps:
+      - name: Apply triage rules
+        uses: actions/github-script@v9
+        env:
+          ISSUE_AUTHOR: ${{ github.event.issue.user.login }}
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+          ISSUE_BODY: ${{ github.event.issue.body }}
+        with:
+          script: |
+            const author = process.env.ISSUE_AUTHOR || '';
+            // Never react to issues opened by bots to avoid loops
+            if (author.endsWith('[bot]')) return;
+
+            const body = process.env.ISSUE_BODY || '';
+            const lower = body.toLowerCase();
+            const issueNumber = context.issue.number;
+
+            const labels = (names) => github.rest.issues.addLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issueNumber,
+              labels: names,
+            });
+
+            const reply = (message) => github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issueNumber,
+              body: message,
+            });
+
+            // Rule 1: publishing to npm or the GitHub Package Registry fails
+            if (/e40[13]|forbidden|authentication|npm publish|publish (fail|error)|registry/.test(lower)) {
+              await labels(['publish-auth']);
+              await reply(
+                'This looks like a publishing or registry authentication problem.\n\n' +
+                'This template publishes to both npm and the GitHub Package Registry ' +
+                '(GPR) from the Release workflow. Common causes:\n\n' +
+                '- The workflow lacks the `packages: write` permission\n' +
+                '- `NODE_AUTH_TOKEN` is not set for the registry publish step\n' +
+                '- The package scope does not match the GitHub owner for GPR ' +
+                '(`@<owner>/...`)\n\n' +
+                'Please attach the relevant part of the workflow run log so we can ' +
+                'take a closer look.'
+              );
+              return;
+            }
+
+            // Rule 2: question about how to use this template
+            if (/how (do|to|can i)|use this template|usage|boilerplate|scaffold/.test(lower)) {
+              await labels(['usage']);
+              await reply(
+                'This looks like a usage question about this template.\n\n' +
+                'Please take a look at the [README](../blob/main/README.md) for an ' +
+                'overview of the test and release setup, and at ' +
+                '[CONTRIBUTING.md](../blob/main/CONTRIBUTING.md) for the development ' +
+                'workflow.\n\n' +
+                'If that does not answer your question, let us know what you are ' +
+                'trying to achieve and where you got stuck.'
+              );
+              return;
+            }
+
+            // Rule 3: low-information report (likely an empty or minimal issue)
+            if (body.trim().length < 200) {
+              await labels(['needs-info']);
+              await reply(
+                'Thanks for opening this issue! Unfortunately, there is not enough ' +
+                'information to investigate it yet. Please edit the issue and add:\n\n' +
+                '- The version of this template (or of your derived package)\n' +
+                '- The relevant workflow file or configuration\n' +
+                '- The workflow run log around the failure\n\n' +
+                'The issue will be closed automatically if there is no response within 7 days.'
+              );
+              return;
+            }

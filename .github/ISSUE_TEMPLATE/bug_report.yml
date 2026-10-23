@@ -1,0 +1,64 @@
+name: Bug report
+description: Create a report to help us improve
+labels: ['bug']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug! Please fill out the sections below so the issue can be triaged quickly.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the bug
+      description: A clear and concise description of what the bug is.
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: The version of this template (or of your derived package) you are using.
+      placeholder: v8.0.0
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Node.js/npm versions, OS, and the browser if the problem is UI related.
+      placeholder: |
+        Node.js: 24
+        npm: 11
+        OS: macOS 15
+        Browser: Chrome 130 (only if UI related)
+    validations:
+      required: true
+
+  - type: textarea
+    id: configuration
+    attributes:
+      label: Relevant configuration
+      description: The workflow file (or the relevant part of it), or a link to the repository derived from this template.
+      render: text
+
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected behavior
+      description: A clear and concise description of what you expected to happen.
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant log output
+      description: The workflow run log around the failure, if available.
+      render: shell
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional context
+      description: Add any other context about the problem here.
