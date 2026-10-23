@@ -1,4 +1,4 @@
-import _style from './styles/index.scss'
+import _style from './styles/index.module.scss'
 import helloTemplate from './template/helloTemplate'
 
 const helloWorld = () => 'hello world!'

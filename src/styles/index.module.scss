@@ -1,22 +1,24 @@
-@use "~@cycjimmy/sass-lib" as *;
+@use "@cycjimmy/sass-lib" as *;
 
-%blackBorder {
+%black-border {
   border: 1px solid black;
 }
 
-.helloWrapper {
+.hello-wrapper {
   @extend %flex-center;
+
   width: 500px;
   height: 300px;
   margin: auto;
 
-  @extend %blackBorder;
+  @extend %black-border;
 }
 
 .hello {
   @extend %flex-center;
+
   width: 80%;
   height: 80%;
 
-  @extend %blackBorder;
+  @extend %black-border;
 }
