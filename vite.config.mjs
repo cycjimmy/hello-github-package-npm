@@ -35,7 +35,9 @@ function injectCss({ banner = null } = {}) {
       const css = cssAssets
         .map((name) => {
           const { source } = bundle[name]
-          return source instanceof Uint8Array ? new TextDecoder().decode(source) : String(source)
+          return source instanceof Uint8Array
+            ? new TextDecoder().decode(source)
+            : String(source)
         })
         .join('\n')
         .replace(/\/\*\$vite\$:\d+\*\//g, '') // strip Vite internal CSS markers
@@ -47,9 +49,14 @@ function injectCss({ banner = null } = {}) {
       // generateBundle hook), so this code is never minified afterwards.
       const injectionCode = `;(function(){try{if(typeof document!='undefined'){var e=document.createElement('style');e.appendChild(document.createTextNode(${JSON.stringify(css.trim())}));document.head.appendChild(e)}}catch(t){console.error('inject-css',t)}})();\n`
 
+      const bannerPrefix = banner
+        ? `${banner}\n`
+        : ''
+
       for (const chunk of Object.values(bundle)) {
-        if (chunk.type === 'chunk' && chunk.isEntry)
-          chunk.code = `${banner ? `${banner}\n` : ''}${injectionCode}${chunk.code}`
+        if (chunk.type === 'chunk' && chunk.isEntry) {
+          chunk.code = `${bannerPrefix}${injectionCode}${chunk.code}`
+        }
       }
     },
   }
@@ -81,10 +88,23 @@ function libBuild({ formats, fileName, minify = false }) {
 }
 
 const builds = {
-  'esm': libBuild({ formats: ['es'], fileName: esmFileName }),
-  'umd': libBuild({ formats: ['umd'], fileName: umdFileName }),
-  'umd-min': libBuild({ formats: ['umd'], fileName: umdMinFileName, minify: 'terser' }),
-  'deployment': libBuild({ formats: ['umd'], fileName: umdFileName }),
+  'esm': libBuild({
+    formats: ['es'],
+    fileName: esmFileName,
+  }),
+  'umd': libBuild({
+    formats: ['umd'],
+    fileName: umdFileName,
+  }),
+  'umd-min': libBuild({
+    formats: ['umd'],
+    fileName: umdMinFileName,
+    minify: 'terser',
+  }),
+  'deployment': libBuild({
+    formats: ['umd'],
+    fileName: umdFileName,
+  }),
 }
 
 export default defineConfig(({ mode }) => {
@@ -93,10 +113,18 @@ export default defineConfig(({ mode }) => {
   return {
     // Avoid copying static/ (or any public dir) into dist and polluting .release.
     publicDir: false,
-    plugins: [injectCss({ banner: mode === 'umd-min' ? myBanner(pkg) : null })],
+    plugins: [
+      injectCss({
+        banner: mode === 'umd-min'
+          ? myBanner(pkg)
+          : null,
+      }),
+    ],
     css: {
       // Inline postcss config keeps the build setup in a single file.
-      postcss: { plugins: [autoprefixer] },
+      postcss: {
+        plugins: [autoprefixer],
+      },
       modules: {
         // Kebab-case class names in SCSS with camelCase JS keys, so the
         // exported _style shape stays identical to the old rollup builds.
