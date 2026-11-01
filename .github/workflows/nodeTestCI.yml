@@ -13,23 +13,21 @@ on:
   schedule:
     - cron: 0 2 * * 0
 
-permissions:
-  contents: write
-
 jobs:
   test:
     runs-on: ${{ matrix.os }}
+    # Read-only on purpose: `npm ci` runs install scripts from the dependency tree.
+    permissions:
+      contents: read
     strategy:
       fail-fast: false
       matrix:
-        node: [24]
+        node: [22, 24]
         os: [ubuntu-latest, windows-latest, macOS-latest]
 
     steps:
       - name: Checkout
         uses: actions/checkout@v7
-        with:
-          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v7
@@ -47,6 +45,39 @@ jobs:
 
       - name: Run unit tests
         run: npm test
+
+      - name: Build package
+        run: npm run package
+
+  # Split out of `test` so the write token never reaches the steps that run
+  # repository code, and so the dry-run executes once instead of per matrix cell.
+  release-dry-run:
+    needs: test
+    if: >-
+      github.event_name != 'pull_request' ||
+      github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write # for semantic-release to verify npm auth via trusted publishing (OIDC)
+      contents: write # for semantic-release to verify Git push access during dry-run
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+
+      # release.config.js imports @cycjimmy/config-lib and @semantic-release/npm
+      # reads pkgRoot (.release), so this job rebuilds instead of inheriting the
+      # test job's filesystem.
+      - name: Install dependencies
+        run: npm ci
 
       - name: Build package
         run: npm run package

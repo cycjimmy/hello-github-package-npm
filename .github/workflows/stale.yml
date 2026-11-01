@@ -10,6 +10,7 @@ on:
 
 permissions:
   issues: write
+  actions: write # for actions/stale to refresh its progress cache
 
 jobs:
   stale:

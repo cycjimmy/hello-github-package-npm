@@ -1,12 +1,15 @@
 name: Issue Bot
 
-# Rule-based triage for newly opened issues.
+# Rule-based triage for issues: label/reply on newly opened issues, and
+# release the needs-info label once the reporter comes back with details.
 # All untrusted issue content is passed through environment variables (never
 # interpolated into a shell command) so it cannot break out of the workflow.
 
 on:
   issues:
-    types: [opened]
+    types: [opened, edited]
+  issue_comment:
+    types: [created]
 
 permissions:
   issues: write
@@ -20,24 +23,54 @@ jobs:
         uses: actions/github-script@v9
         env:
           ISSUE_AUTHOR: ${{ github.event.issue.user.login }}
+          COMMENT_AUTHOR: ${{ github.event.comment.user.login }}
           ISSUE_TITLE: ${{ github.event.issue.title }}
           ISSUE_BODY: ${{ github.event.issue.body }}
         with:
           script: |
-            const author = process.env.ISSUE_AUTHOR || '';
-            // Never react to issues opened by bots to avoid loops
-            if (author.endsWith('[bot]')) return;
+            const issueAuthor = process.env.ISSUE_AUTHOR || '';
+            const commentAuthor = process.env.COMMENT_AUTHOR || '';
+            // Never react to bot activity to avoid loops
+            if (issueAuthor.endsWith('[bot]') || commentAuthor.endsWith('[bot]')) return;
 
             const body = process.env.ISSUE_BODY || '';
-            const lower = body.toLowerCase();
+            const lower = (process.env.ISSUE_TITLE + '\n' + body).toLowerCase();
             const issueNumber = context.issue.number;
+            const isCommentEvent = context.payload.comment != null;
+            const isOpened = context.payload.action === 'opened' && !isCommentEvent;
+            const isEdited = context.payload.action === 'edited' && !isCommentEvent;
 
             const labels = (names) => github.rest.issues.addLabels({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: issueNumber,
               labels: names,
+            }).catch((error) => {
+              // A label missing from the repository is a configuration problem,
+              // it must not take the whole triage run down with it
+              if (error.status !== 422) throw error;
+              core.warning(`Label missing from the repository: ${names.join(', ')}`);
             });
+
+            const removeLabel = (name) => github.rest.issues.removeLabel({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issueNumber,
+              name,
+            }).catch((error) => {
+              // The label is already gone, nothing to do
+              if (error.status !== 404) throw error;
+            });
+
+            const hasLabel = async (name) => {
+              const { data } = await github.rest.issues.listLabelsOnIssue({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issueNumber,
+                per_page: 100,
+              });
+              return data.some((label) => label.name === name);
+            };
 
             const reply = (message) => github.rest.issues.createComment({
               owner: context.repo.owner,
@@ -46,48 +79,75 @@ jobs:
               body: message,
             });
 
-            // Rule 1: publishing to npm or the GitHub Package Registry fails
-            if (/e40[13]|forbidden|authentication|npm publish|publish (fail|error)|registry/.test(lower)) {
-              await labels(['publish-auth']);
-              await reply(
-                'This looks like a publishing or registry authentication problem.\n\n' +
-                'This template publishes to both npm and the GitHub Package Registry ' +
-                '(GPR) from the Release workflow. Common causes:\n\n' +
-                '- The workflow lacks the `packages: write` permission\n' +
-                '- `NODE_AUTH_TOKEN` is not set for the registry publish step\n' +
-                '- The package scope does not match the GitHub owner for GPR ' +
-                '(`@<owner>/...`)\n\n' +
-                'Please attach the relevant part of the workflow run log so we can ' +
-                'take a closer look.'
-              );
+            // User-filled content only: drop form headings, "_No response_"
+            // placeholders and empty lines before measuring information depth
+            const userContent = body
+              .split('\n')
+              .map((line) => line.trim())
+              .filter((line) => line && !line.startsWith('#') && !line.startsWith('_No response'))
+              .join('\n');
+
+            if (isOpened || isEdited) {
+              // Rule 1: publishing to npm or the GitHub Package Registry fails
+              if (isOpened && /e40[13]|forbidden|authentication|npm publish|publish (fail|error)|registry/.test(lower)) {
+                await labels(['publish-auth']);
+                await reply(
+                  'This looks like a publishing or registry authentication problem.\n\n' +
+                  'This template publishes to both npm and the GitHub Package Registry ' +
+                  '(GPR) from the Release workflow. Common causes:\n\n' +
+                  '- The workflow lacks the `packages: write` permission\n' +
+                  '- `NODE_AUTH_TOKEN` is not set for the registry publish step\n' +
+                  '- The package scope does not match the GitHub owner for GPR ' +
+                  '(`@<owner>/...`)\n\n' +
+                  'Please attach the relevant part of the workflow run log so we can ' +
+                  'take a closer look.'
+                );
+                return;
+              }
+
+              // Rule 2: question about how to use this template
+              if (isOpened && /how (do|to|can i)|use this template|usage|boilerplate|scaffold/.test(lower)) {
+                await labels(['usage']);
+                await reply(
+                  'This looks like a usage question about this template.\n\n' +
+                  'Please take a look at the [README](../blob/main/README.md) for an ' +
+                  'overview of the test and release setup, and at ' +
+                  '[CONTRIBUTING.md](../blob/main/CONTRIBUTING.md) for the development ' +
+                  'workflow.\n\n' +
+                  'If that does not answer your question, let us know what you are ' +
+                  'trying to achieve and where you got stuck.'
+                );
+                return;
+              }
+
+              // Rule 3: low-information report (nearly every form field left empty)
+              if (isOpened && userContent.length < 200) {
+                await labels(['needs-info']);
+                await reply(
+                  'Thanks for opening this issue! Unfortunately, there is not enough ' +
+                  'information to investigate it yet. Please edit the issue and add:\n\n' +
+                  '- The version of this template (or of your derived package)\n' +
+                  '- The relevant workflow file or configuration\n' +
+                  '- The workflow run log around the failure\n\n' +
+                  'The issue will be closed automatically if there is no response within 7 days.'
+                );
+              } else if (isEdited && (await hasLabel('needs-info'))) {
+                // The reporter came back with details on edit: release the issue
+                // from the 7-day needs-info lifecycle managed by the stale workflow
+                await removeLabel('needs-info');
+                await reply(
+                  'Thanks for the additional details! The `needs-info` label has ' +
+                  'been removed, so this issue is back in the normal review queue.'
+                );
+              }
               return;
             }
 
-            // Rule 2: question about how to use this template
-            if (/how (do|to|can i)|use this template|usage|boilerplate|scaffold/.test(lower)) {
-              await labels(['usage']);
+            // Comment event: a reply from the reporter also counts as engagement
+            if (isCommentEvent && (await hasLabel('needs-info'))) {
+              await removeLabel('needs-info');
               await reply(
-                'This looks like a usage question about this template.\n\n' +
-                'Please take a look at the [README](../blob/main/README.md) for an ' +
-                'overview of the test and release setup, and at ' +
-                '[CONTRIBUTING.md](../blob/main/CONTRIBUTING.md) for the development ' +
-                'workflow.\n\n' +
-                'If that does not answer your question, let us know what you are ' +
-                'trying to achieve and where you got stuck.'
+                'Thanks for the reply! The `needs-info` label has been removed, so ' +
+                'this issue is back in the normal review queue.'
               );
-              return;
-            }
-
-            // Rule 3: low-information report (likely an empty or minimal issue)
-            if (body.trim().length < 200) {
-              await labels(['needs-info']);
-              await reply(
-                'Thanks for opening this issue! Unfortunately, there is not enough ' +
-                'information to investigate it yet. Please edit the issue and add:\n\n' +
-                '- The version of this template (or of your derived package)\n' +
-                '- The relevant workflow file or configuration\n' +
-                '- The workflow run log around the failure\n\n' +
-                'The issue will be closed automatically if there is no response within 7 days.'
-              );
-              return;
             }
