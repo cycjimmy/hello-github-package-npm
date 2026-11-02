@@ -1,3 +1,49 @@
+# [10.0.0](https://github.com/cycjimmy/hello-github-package-npm/compare/v9.0.0...v10.0.0) (2026-11-02)
+
+
+* ci!: overhaul the repository CI, add maintenance bots and rebuild the contribution forms ([#611](https://github.com/cycjimmy/hello-github-package-npm/issues/611)) ([8865f37](https://github.com/cycjimmy/hello-github-package-npm/commit/8865f37789d1ffa051a0879491cc38e01f606a2e))
+
+
+### Bug Fixes
+
+* **ci:** gate Dependabot merges on the pull request checks ([#614](https://github.com/cycjimmy/hello-github-package-npm/issues/614)) ([51a1fab](https://github.com/cycjimmy/hello-github-package-npm/commit/51a1fab30382a32b80d29459696b63e2e2f160c0))
+
+
+### BREAKING CHANGES
+
+* the template's CI, bot and contribution-form contract is
+replaced as a whole, so derived repositories must re-sync `.github/`
+instead of cherry-picking single files:
+
+- Test CI and Release declare permissions per job now. Customizations made
+  to the old workflow-level `permissions` block are dropped, and any job
+  that needs an extra scope has to declare it locally.
+- Test CI covers Node.js 22 and 24 only; the devDependency toolchain
+  requires Node.js 22.18+ or 24.11+.
+- The bug report form gains a required "Steps to reproduce" field, so
+  partially filled reports can no longer be submitted.
+- Blank issues are disabled; reporters must pick one of the forms.
+- Dependabot pull requests are merged automatically unless they are
+  semver-major updates.
+
+* fix(ci): address the review findings on the automation overhaul
+
+- dependabotAutoMerge: refuse to run while auto-merge is disabled or the base
+  branch requires no status checks; GitHub treats an auto-merge request with
+  no requirements as satisfied and merges before any workflow reports
+- Issue Bot: only the issue reporter releases the needs-info label, so a
+  maintainer asking for logs no longer drops the issue out of the 7-day
+  lifecycle, and a concurrency group serializes the per-issue handlers so
+  parallel edits or comments do not answer the reporter twice
+- Issue Bot: measure information depth by excluding only the headings and
+  placeholders the issue forms generate, instead of every line that starts
+  with '#', which also dropped the reporter's own markdown and code comments
+- Test CI: drop id-token: write from the dry-run job, since SKIP_NPM_AUTH
+  disables npm publishing and OIDC is never used there, and add a fixed-name
+  `Test CI Summary` gate because matrix cells report one check each and
+  branch protection needs a stable name to require
+- CONTRIBUTING: document the aggregate check name and the auto-merge guard
+
 # [9.0.0](https://github.com/cycjimmy/hello-github-package-npm/compare/v8.0.0...v9.0.0) (2026-10-23)
 
 
