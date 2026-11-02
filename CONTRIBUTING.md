@@ -21,9 +21,9 @@ $ npm run package      # build dist/ and assemble .release/
 
 1. **Settings → Actions → General → Workflow permissions**: choose *Read and write permissions*. Dependabot opens its pull requests from branches inside this repository, which is why the `pull_request` event can hand `GITHUB_TOKEN` a write token there. Pull requests from forks stay read-only, and the workflow skips them through the `head.repo.full_name` guard.
 2. **Settings → General**: enable *Allow auto-merge*.
-3. **Branch protection on `main`**: require the `Test CI Summary` status check. `Test CI` reports one check per matrix cell (`test (22, ubuntu-latest)` and so on), so the `test-status` job aggregates them into a single, stable name to require.
+3. **Branch protection on `main`**: block force pushes and deletions, but leave *Require status checks to pass before merging* **off**. `semantic-release` pushes `chore(release): … [skip ci]` straight to `main`, and GitHub rejects that push while a required check is configured. A repository owned by a personal account cannot add the GitHub Actions app to a ruleset bypass list either, so there is no way to have both.
 
-`dependabotAutoMerge.yml` refuses to run while auto-merge is disabled or the base branch requires no status checks: GitHub treats an auto-merge request with no requirements as already satisfied and merges immediately, before any workflow reports.
+The CI gate for Dependabot lives in `dependabotAutoMerge.yml` instead: it waits for `gh pr checks --watch --fail-fast` to settle before asking for a squash merge. `Test CI` reports one check per matrix cell (`test (22, ubuntu-latest)` and so on), so the `test-status` job aggregates them into a single `Test CI Summary` check that is easy to read.
 
 `Test CI` keeps the write token away from the steps that execute repository code: the `test` job is read-only, and the semantic-release dry-run lives in its own `release-dry-run` job gated to same-repository pull requests.
 
