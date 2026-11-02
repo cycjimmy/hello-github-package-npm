@@ -1,0 +1,10 @@
+# Configuration for the `coveralls` CLI (`npx coveralls < coverage/lcov.info`),
+# which is what the `coveralls` devDependency provides.
+#
+# coveralls@3 reads only `repo_token` and `service_name` from this file and ships
+# no GitHub Actions detection, so the service name has to be declared here.
+#
+# CI does not go through the CLI: .github/workflows/coveralls.yml uploads with
+# coverallsapp/github-action and GITHUB_TOKEN. The repo token is a secret and
+# belongs in COVERALLS_REPO_TOKEN, never in this file.
+service_name: github-actions
