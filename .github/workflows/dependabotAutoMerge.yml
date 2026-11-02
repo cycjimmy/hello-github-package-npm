@@ -11,6 +11,29 @@ jobs:
       github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     steps:
+      # Without required checks GitHub treats an auto-merge request as already
+      # satisfied and merges right away, so a half-configured repository would
+      # land Dependabot pull requests before CI ever reports. Fail loudly instead.
+      - name: Require auto-merge prerequisites
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BASE_REF: ${{ github.event.pull_request.base.ref }}
+        run: |
+          repo="repos/${GITHUB_REPOSITORY}"
+          auto=$(gh api "$repo" --jq '.allow_auto_merge')
+          checks=$(gh api "$repo/branches/${BASE_REF}/protection" \
+            --jq '.required_status_checks.contexts | length' 2>/dev/null || echo 0)
+
+          if [ "$auto" != 'true' ]; then
+            echo "::error::Allow auto-merge is disabled in the repository settings."
+            exit 1
+          fi
+
+          if [ "$checks" = '0' ] || [ -z "$checks" ]; then
+            echo "::error::${BASE_REF} requires no status checks, so auto-merge would merge immediately."
+            exit 1
+          fi
+
       - id: metadata
         uses: dependabot/fetch-metadata@v3
       - if: steps.metadata.outputs.update-type != 'version-update:semver-major'

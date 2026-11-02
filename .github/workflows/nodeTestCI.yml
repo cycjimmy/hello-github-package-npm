@@ -57,9 +57,10 @@ jobs:
       github.event_name != 'pull_request' ||
       github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
+    # SKIP_NPM_AUTH disables npm publishing, so verifyAuth never exchanges an
+    # OIDC token here; only the `git push --dry-run` access check needs a scope.
     permissions:
-      id-token: write # for semantic-release to verify npm auth via trusted publishing (OIDC)
-      contents: write # for semantic-release to verify Git push access during dry-run
+      contents: write
 
     steps:
       - name: Checkout
@@ -108,3 +109,16 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SKIP_NPM_AUTH: 'true'
+
+  # GitHub reports one check per matrix cell, so branch protection cannot point
+  # at a stable name. This gate is the single check to require.
+  test-status:
+    name: Test CI Summary
+    if: always()
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - if: needs.test.result != 'success'
+        run: |
+          echo "::error::The test matrix did not pass: ${{ needs.test.result }}"
+          exit 1
