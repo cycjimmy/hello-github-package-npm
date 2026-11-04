@@ -1,3 +1,12 @@
+## [10.0.1](https://github.com/cycjimmy/hello-github-package-npm/compare/v10.0.0...v10.0.1) (2026-11-04)
+
+
+### Bug Fixes
+
+* **ci:** keep the release dry-run off pull request code ([3cdc4a6](https://github.com/cycjimmy/hello-github-package-npm/commit/3cdc4a65010c0337a98034b63e09d3b491294927))
+* **ci:** poll the aggregate check instead of watching every check ([2a15023](https://github.com/cycjimmy/hello-github-package-npm/commit/2a15023f8b976e90d2bb019a3d9220aecfc28208))
+* **package:** keep the public access level in the release manifest ([4e0cd50](https://github.com/cycjimmy/hello-github-package-npm/commit/4e0cd50bfa72179b1d25516cbb30631286d6d545))
+
 # [10.0.0](https://github.com/cycjimmy/hello-github-package-npm/compare/v9.0.0...v10.0.0) (2026-11-02)
 
 
