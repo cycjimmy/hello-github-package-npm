@@ -28,6 +28,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v7
+        with:
+          # No git credential is needed after the clone, and keeping one would
+          # hand it to whatever `npm ci` install scripts decide to run.
+          persist-credentials: false
 
       - name: Setup Node.js
         uses: actions/setup-node@v7
@@ -49,13 +53,18 @@ jobs:
       - name: Build package
         run: npm run package
 
-  # Split out of `test` so the write token never reaches the steps that run
-  # repository code, and so the dry-run executes once instead of per matrix cell.
+  # Split out of `test` so the dry-run executes once instead of per matrix cell.
+  #
+  # This job loads release.config.js, runs `npm ci` and builds the package from
+  # the checked out commit. On a pull request that commit is authored by the PR
+  # itself, so a write token must never reach it: only trusted refs qualify. The
+  # pull request path keeps its packaging check in the read-only `test` matrix.
   release-dry-run:
     needs: test
     if: >-
-      github.event_name != 'pull_request' ||
-      github.event.pull_request.head.repo.full_name == github.repository
+      github.event_name == 'schedule' ||
+      (github.event_name == 'push' &&
+      contains(fromJSON('["refs/heads/main", "refs/heads/next", "refs/heads/next-major", "refs/heads/alpha", "refs/heads/beta"]'), github.ref))
     runs-on: ubuntu-latest
     # SKIP_NPM_AUTH disables npm publishing, so verifyAuth never exchanges an
     # OIDC token here; only the `git push --dry-run` access check needs a scope.
