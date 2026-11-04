@@ -20,8 +20,12 @@ if (jsonData.devDependencies) {
   delete jsonData.devDependencies
 }
 
-if (jsonData.publishConfig) {
-  delete jsonData.publishConfig
+// A scoped package without `publishConfig.access` is published as `restricted`,
+// which fails on a free npm account the first time this template is copied into
+// a new package. Keep the access level only: the registry and tag are decided by
+// the release tooling, not by the source package.json.
+jsonData.publishConfig = {
+  access: jsonData.publishConfig?.access ?? 'public',
 }
 
 if (jsonData.config) {
