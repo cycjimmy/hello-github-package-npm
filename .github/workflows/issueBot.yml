@@ -40,6 +40,8 @@ jobs:
             const sender = process.env.SENDER || '';
             // Never react to bot activity to avoid loops
             if ([issueAuthor, commentAuthor, sender].some((login) => login.endsWith('[bot]'))) return;
+            // `issue_comment` also fires for pull requests; only issues are triaged
+            if (context.payload.issue?.pull_request) return;
             // Only getting back from the reporter counts as engagement: a
             // maintainer asking for logs must not release the needs-info label
             const isReporter = sender === issueAuthor;
@@ -145,9 +147,15 @@ jobs:
                   '- The workflow run log around the failure\n\n' +
                   'The issue will be closed automatically if there is no response within 7 days.'
                 );
-              } else if (isEdited && isReporter && (await hasLabel('needs-info'))) {
+              } else if (
+                isEdited
+                && isReporter
+                && context.payload.changes?.body
+                && (await hasLabel('needs-info'))
+              ) {
                 // The reporter came back with details on edit: release the issue
-                // from the 7-day needs-info lifecycle managed by the stale workflow
+                // from the 7-day needs-info lifecycle managed by the stale workflow.
+                // A title-only edit says nothing about the missing details.
                 await removeLabel('needs-info');
                 await reply(
                   'Thanks for the additional details! The `needs-info` label has ' +
