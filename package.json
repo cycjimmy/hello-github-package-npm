@@ -28,7 +28,7 @@
   "scripts": {
     "start": "npm run dev",
     "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --color --forceExit --detectOpenHandles",
-    "coveralls": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --color --forceExit --detectOpenHandles --coverage",
+    "test:coverage": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --color --forceExit --detectOpenHandles --coverage",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "lint:style": "stylelint \"src/**/*.{css,scss}\"",
@@ -54,7 +54,6 @@
     "@cycjimmy/config-lib": "^3.2.1",
     "autoprefixer": "^10.4.19",
     "babel-jest": "^30.4.1",
-    "coveralls": "^3.1.1",
     "cross-env": "^10.1.0",
     "eslint": "^10.13.0",
     "fs-extra": "^11.2.0",
