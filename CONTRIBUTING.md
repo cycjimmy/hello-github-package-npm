@@ -2,10 +2,15 @@
 
 The repository is released under the MIT license, and follows a standard Github development process, using Github tracker for issues and merging pull requests into main.
 
+## Requirements
+
+* Node.js `^22.18.0 || >=24.11.0`, the same range as `engines` in `package.json` (CI runs the test matrix on 22 and 24)
+* npm 10+
+
 ## Development
 
 ```shell
-$ npm install          # Node ^22.18.0 || >=24.11.0
+$ npm install
 $ npm run dev          # Vite dev server with the root index.html
 $ npm run lint         # ESLint (flat config, @antfu/eslint-config)
 $ npm run lint:style   # Stylelint for src/**/*.{css,scss}
@@ -13,7 +18,26 @@ $ npm test             # Jest
 $ npm run package      # build dist/ and assemble .release/
 ```
 
-`index.html` in the repository root is the Vite dev entry and imports `src/` directly. `static/index.html` is the GitHub Pages demo: it loads the bundled `hello-world.umd.js` through a `<script>` tag and is deployed by `npm run build:deployment`.
+`index.html` in the repository root is the Vite dev entry and imports `src/` directly. `static/index.html` is the GitHub Pages demo: it loads the bundled `hello-world.umd.js` through a `<script>` tag.
+
+## Build outputs
+
+`npm run build` writes three files into `dist/`:
+
+| File | Format | Purpose |
+| --- | --- | --- |
+| `hello-world.esm.js` | ESM | `main`, `module` and `exports` entry (bundlers, `import`) |
+| `hello-world.umd.js` | UMD | unminified browser build, used by the GitHub Pages demo |
+| `hello-world.umd.min.js` | UMD | minified browser/CDN build, attached to the GitHub release |
+
+`npm run build:deployment` builds the UMD bundle and copies `static/` plus the bundle into `.publish/`, which the `Deploy To GitHub Pages` workflow uploads as a Pages artifact and publishes with `actions/deploy-pages`.
+
+## Repository settings required by the deployment
+
+The Pages deployment cannot be fully expressed in code, so the switch itself lives in the repository settings:
+
+1. **Settings → Pages → Build and deployment → Source**: select **GitHub Actions**. With *Deploy from a branch* selected, `actions/deploy-pages` refuses to run, because no Pages site is served from the artifact flow.
+2. `ACCESS_TOKEN` and the `gh-pages` branch are no longer used: the site is uploaded as an artifact and published with the workflow's own OIDC token, so no stored credential is involved. Both can be removed once the first deployment from `main` has succeeded.
 
 ## Repository settings required by the bots
 
@@ -23,7 +47,7 @@ $ npm run package      # build dist/ and assemble .release/
 2. **Settings → General**: enable *Allow auto-merge*.
 3. **Branch protection on `main`**: block force pushes and deletions, but leave *Require status checks to pass before merging* **off**. `semantic-release` pushes `chore(release): … [skip ci]` straight to `main`, and GitHub rejects that push while a required check is configured. A repository owned by a personal account cannot add the GitHub Actions app to a ruleset bypass list either, so there is no way to have both.
 
-The CI gate for Dependabot lives in `dependabotAutoMerge.yml` instead: it waits for `gh pr checks --watch --fail-fast` to settle before asking for a squash merge. `Test CI` reports one check per matrix cell (`test (22, ubuntu-latest)` and so on), so the `test-status` job aggregates them into a single `Test CI Summary` check that is easy to read.
+The CI gate for Dependabot lives in `dependabotAutoMerge.yml` instead: it polls `gh pr checks` for the expected check names, squash merges only after they pass, and confirms the pull request reached `MERGED` before it asks for the Pages deployment. `Test CI` reports one check per matrix cell (`test (22, ubuntu-latest)` and so on), so the `test-status` job aggregates them into a single `Test CI Summary` check that is easy to read.
 
 `Test CI` keeps the write token away from the steps that execute repository code: the `test` job is read-only, and the semantic-release dry-run lives in its own `release-dry-run` job gated to same-repository pull requests.
 
