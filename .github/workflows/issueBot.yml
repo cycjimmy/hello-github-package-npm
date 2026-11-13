@@ -19,6 +19,9 @@ permissions:
 concurrency:
   group: issue-triage-${{ github.repository }}-${{ github.event.issue.number }}
   cancel-in-progress: false
+  # `single` would let a newer queued run replace a waiting one: a reply from the
+  # reporter could be dropped because a maintainer commented right after it.
+  queue: max
 
 jobs:
   triage:
@@ -75,22 +78,93 @@ jobs:
               if (error.status !== 404) throw error;
             });
 
-            const hasLabel = async (name) => {
-              const { data } = await github.rest.issues.listLabelsOnIssue({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: issueNumber,
-                per_page: 100,
-              });
-              return data.some((label) => label.name === name);
-            };
-
             const reply = (message) => github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: issueNumber,
               body: message,
             });
+
+            // The stale workflow closes a needs-info issue and leaves a comment
+            // that starts with this sentence. The marker is never looked for in the
+            // newest comment of the thread: by the time this runs the reporter's
+            // own reply is newer than the notification, so the whole close cycle
+            // is scanned instead (see `closedAutomatically`).
+            const AUTO_CLOSE_NOTE = 'This issue was closed because the requested information was not provided within 7 days.';
+            const closedAutomatically = async (issue) => {
+              if (issue.state !== 'closed') return false;
+
+              const timeline = await github.paginate(github.rest.issues.listEventsForTimeline, {
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issueNumber,
+                per_page: 100,
+              });
+
+              const indexed = timeline.map((event, index) => ({ event, index }));
+
+              // The most recent close is the one that matters: an issue can be
+              // closed, reopened and closed again.
+              const lastClose = indexed.filter(({ event }) => event.event === 'closed').pop();
+
+              // Closing through `GITHUB_TOKEN` is attributed to the actions bot,
+              // so anything else is a maintainer's decision and stays closed.
+              if (!lastClose || lastClose.event.actor?.login !== 'github-actions[bot]') return false;
+
+              // The notification is searched for across the whole cycle that ends
+              // with this close. The reporter can answer after the notification was
+              // posted and before the close landed, and looking at a single "last
+              // comment" would pick that reply up - losing the marker for good,
+              // because the history before the close never changes again.
+              const cycleStart = indexed
+                .filter(({ event, index }) => index < lastClose.index && event.event === 'reopened')
+                .pop()?.index ?? -1;
+
+              return indexed.some(({ event, index }) => index > cycleStart
+                && index < lastClose.index
+                && event.event === 'commented'
+                && typeof event.body === 'string'
+                && event.body.startsWith(AUTO_CLOSE_NOTE));
+            };
+
+            // One handler for both ways the reporter can come back - a comment or
+            // an edit of the issue body. Both re-read the issue, because the
+            // payload is a snapshot taken before this run got the concurrency lock.
+            const handleReporterFollowUp = async (message) => {
+              const { data: live } = await github.rest.issues.get({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issueNumber,
+              });
+              const liveLabels = live.labels
+                .map((label) => (typeof label === 'string' ? label : label.name));
+              if (!liveLabels.includes('needs-info')) return;
+
+              // Closed automatically: the missing information has arrived, so the
+              // closure is undone. This runs before the label is dropped, which
+              // is what lets a later comment still find the markers it needs.
+              if (liveLabels.includes('stale') && (await closedAutomatically(live))) {
+                await github.rest.issues.update({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: issueNumber,
+                  state: 'open',
+                });
+                await removeLabel('stale');
+                await removeLabel('needs-info');
+                await reply(
+                  'Thanks for the follow-up! This issue had been closed automatically, ' +
+                  'so it has been reopened and is back in the normal review queue.'
+                );
+                return;
+              }
+
+              // Closed by a maintainer: the activity is noted but the decision
+              // stands. An open issue only needs the label removed.
+              if (live.state !== 'open') return;
+              await removeLabel('needs-info');
+              await reply(message);
+            };
 
             // Drop only the scaffolding the issue forms generate: their own
             // "### <label>" headings and the "_No response_" placeholders.
@@ -147,17 +221,11 @@ jobs:
                   '- The workflow run log around the failure\n\n' +
                   'The issue will be closed automatically if there is no response within 7 days.'
                 );
-              } else if (
-                isEdited
-                && isReporter
-                && context.payload.changes?.body
-                && (await hasLabel('needs-info'))
-              ) {
-                // The reporter came back with details on edit: release the issue
-                // from the 7-day needs-info lifecycle managed by the stale workflow.
-                // A title-only edit says nothing about the missing details.
-                await removeLabel('needs-info');
-                await reply(
+              } else if (isEdited && isReporter && context.payload.changes?.body) {
+                // The reporter came back with details on edit. A title-only edit
+                // says nothing about the missing details, and an issue that was
+                // closed in the meantime is reopened by the same handler.
+                await handleReporterFollowUp(
                   'Thanks for the additional details! The `needs-info` label has ' +
                   'been removed, so this issue is back in the normal review queue.'
                 );
@@ -165,10 +233,9 @@ jobs:
               return;
             }
 
-            // Comment event: a reply from the reporter also counts as engagement
-            if (isCommentEvent && isReporter && (await hasLabel('needs-info'))) {
-              await removeLabel('needs-info');
-              await reply(
+            // Comment event: a reply from the reporter also counts as engagement.
+            if (isCommentEvent && isReporter) {
+              await handleReporterFollowUp(
                 'Thanks for the reply! The `needs-info` label has been removed, so ' +
                 'this issue is back in the normal review queue.'
               );
