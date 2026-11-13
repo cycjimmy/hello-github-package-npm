@@ -77,31 +77,61 @@ jobs:
           PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          # `main` has no required status check, so `--auto` merges as soon as the
-          # request is accepted. GitHub rejects the request while a check other than
-          # this one is still running (`Pull request is in unstable status`), and the
-          # name based gate above cannot rule that out: a second run of the same
-          # workflow registers identically named checks on the same commit, and its
-          # summary does not exist yet while its matrix is still running.
+          # `main` has no required status check, so the merge lands immediately.
+          # GitHub rejects the request while a check other than this one is still
+          # running (`Pull request is in unstable status`), and the name based gate
+          # above cannot rule that out: a second run of the same workflow registers
+          # identically named checks on the same commit, and its summary does not
+          # exist yet while its matrix is still running.
           #
           # Waiting for `mergeStateStatus` to become `CLEAN` is not an option here:
           # this job is a check on that same commit, so it would wait for itself.
           # Retry the request instead, and re-check the head on every attempt so a
           # push in between leaves the merge to the run it starts.
-          for attempt in $(seq 1 12); do
+          #
+          # `--auto` is deliberately not used: it only enqueues the request and
+          # exits successfully, so its exit code says nothing about the pull request
+          # being merged. The deployment below runs against the default branch as it
+          # is right now, so it must not be dispatched before the merge landed. The
+          # retry window is wide enough for the remaining checks to settle, and
+          # `timeout-minutes` bounds the job.
+          for attempt in $(seq 1 30); do
             current=$(gh pr view "$PR_URL" --json headRefOid --jq .headRefOid)
             if [ "$current" != "$PR_HEAD_SHA" ]; then
               echo "The pull request head moved to ${current}; leaving it to the next run."
               exit 0
             fi
 
-            if gh pr merge --auto --squash --match-head-commit "$PR_HEAD_SHA" "$PR_URL"; then
+            if gh pr merge --squash --match-head-commit "$PR_HEAD_SHA" "$PR_URL"; then
+              # `gh pr merge` exits once the merge is accepted. Confirm the state
+              # before dispatching, so a deployment can never publish the commit
+              # the merge has not produced yet.
+              for _ in $(seq 1 12); do
+                state=$(gh pr view "$PR_URL" --json state --jq .state)
+                if [ "$state" = "MERGED" ]; then
+                  # The merge runs as `github-actions[bot]`, and a push made with
+                  # `GITHUB_TOKEN` does not start other workflows.
+                  # `repository_dispatch` is one of the events that token may raise,
+                  # so the Pages deployment is requested explicitly instead of
+                  # relying on the `push` to `main`. The release is not requested on
+                  # purpose: dependabot commits are `chore(deps):`, which
+                  # semantic-release does not turn into a version.
+                  gh api -X POST "repos/${GITHUB_REPOSITORY}/dispatches" \
+                    -f event_type=dependabot-merged >/dev/null \
+                    || echo "::warning::Merged, but the follow-up workflows could not be dispatched."
+                  exit 0
+                fi
+
+                sleep 5
+              done
+
+              echo "::warning::The merge was accepted but the pull request is still ${state}; the deployment was not dispatched."
               exit 0
             fi
 
-            echo "Retrying the merge request (attempt ${attempt}/12)"
+            echo "Retrying the merge request (attempt ${attempt}/30)"
             sleep 10
           done
 
-          echo "::error::Could not request the merge of the pull request."
+          echo "::error::Could not merge the pull request."
           exit 1

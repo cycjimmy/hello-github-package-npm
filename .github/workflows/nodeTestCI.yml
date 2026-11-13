@@ -20,6 +20,11 @@ on:
       - alpha
       - beta
 
+  # A `pull_request` run uses the definition from the base branch, so a branch
+  # that changes the toolchain cannot be validated before it is merged. A manual
+  # trigger runs the definition from the selected ref instead.
+  workflow_dispatch:
+
   schedule:
     - cron: 0 2 * * 0
 
@@ -70,6 +75,10 @@ jobs:
   # the checked out commit. On a pull request that commit is authored by the PR
   # itself, so a write token must never reach it: only trusted refs qualify. The
   # pull request path keeps its packaging check in the read-only `test` matrix.
+  #
+  # A manual `workflow_dispatch` run is excluded on purpose: it also executes the
+  # selected ref with a write token, and the read-only matrix above already
+  # validates a toolchain change.
   release-dry-run:
     needs: test
     if: >-
