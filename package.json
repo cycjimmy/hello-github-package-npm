@@ -3,13 +3,12 @@
   "type": "module",
   "version": "10.0.1",
   "description": "hello github package npm",
-  "browser": "dist/hello-world.umd.min.js",
   "author": "cycjimmy <cycjimmy@gmail.com> (https://github.com/cycjimmy)",
   "license": "MIT",
   "homepage": "https://github.com/cycjimmy/hello-github-package-npm#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/cycjimmy/hello-github-package-npm.git"
+    "url": "git+https://github.com/cycjimmy/hello-github-package-npm.git"
   },
   "bugs": {
     "url": "https://github.com/cycjimmy/hello-github-package-npm/issues"
@@ -19,12 +18,24 @@
     "package",
     "npm"
   ],
+  "browser": "dist/hello-world.umd.min.js",
   "exports": {
-    "import": "./dist/hello-world.esm.js",
-    "default": "./dist/hello-world.esm.js"
+    ".": {
+      "import": "./dist/hello-world.esm.js",
+      "default": "./dist/hello-world.esm.js"
+    },
+    "./package.json": "./package.json"
   },
   "main": "dist/hello-world.esm.js",
   "module": "dist/hello-world.esm.js",
+  "unpkg": "dist/hello-world.umd.min.js",
+  "jsdelivr": "dist/hello-world.umd.min.js",
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": "^22.18.0 || >=24.11.0"
+  },
   "scripts": {
     "start": "npm run dev",
     "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --color --forceExit --detectOpenHandles",
