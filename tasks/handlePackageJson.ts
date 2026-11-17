@@ -1,12 +1,22 @@
 /* eslint no-console: 0 */
 import path from 'node:path'
+
 import fs from 'fs-extra'
 
 const { readJsonSync, outputJsonSync } = fs
 
+interface ReleasePackageJson {
+  scripts?: unknown
+  dependencies?: unknown
+  devDependencies?: unknown
+  config?: unknown
+  publishConfig?: { access?: string }
+  [key: string]: unknown
+}
+
 const jsonData = readJsonSync(
   path.resolve('package.json'),
-)
+) as ReleasePackageJson
 
 if (jsonData.scripts) {
   delete jsonData.scripts

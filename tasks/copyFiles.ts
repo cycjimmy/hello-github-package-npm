@@ -1,5 +1,6 @@
 /* eslint no-console: 0 */
 import path from 'node:path'
+
 import fs from 'fs-extra'
 
 const { copySync } = fs

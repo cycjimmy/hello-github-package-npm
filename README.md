@@ -7,10 +7,10 @@
 [![Release date][release-date-image]][release-url]
 [![vite][vite-image]][vite-url]
 [![semantic-release][semantic-image]][semantic-url]
-[![jest][jest-image]][jest-url]
+[![vitest][vitest-image]][vitest-url]
 [![npm license][license-image]][download-url]
 
-This is a private javascript lib template for automatic test, release and so on. [Demo][github-pages-url]
+This is a private TypeScript lib template for automatic test, release and so on. [Demo][github-pages-url]
 
 ## Install
 
@@ -36,8 +36,9 @@ The package is **ESM only**:
 | File | Format | Purpose |
 | --- | --- | --- |
 | `dist/hello-world.esm.js` | ESM | `main`, `module` and `exports` entry (bundlers, `import`) |
-| `dist/hello-world.umd.js` | UMD | unminified browser build, used by the GitHub Pages demo |
+| `dist/hello-world.umd.js` | UMD | unminified browser build for `<script>` tags |
 | `dist/hello-world.umd.min.js` | UMD | minified browser/CDN build, `browser`/`unpkg`/`jsdelivr` |
+| `dist/index.d.ts` | Types | TypeScript declarations for `types` and the `exports` `types` condition |
 
 * There is no CommonJS bundle. Node.js 20.19+ / 22.12+ can `require()` the ESM
   entry, because those versions load an ES module synchronously.
@@ -45,7 +46,9 @@ The package is **ESM only**:
 * The stylesheet is not shipped as a separate `.css` file: the CSS Modules output
   is inlined into the entry chunk and injected as a `<style>` element while the
   module is evaluated, so a plain `<script>` tag needs nothing else. See the
-  `injectCss` plugin in `vite.config.mjs`.
+  `injectCss` plugin in `vite.config.ts`.
+* Type declarations ship with the package (`types` plus the `types` export
+  condition), so no `@types/*` package is needed.
 
 The toolchain itself needs Node.js `^22.18.0 || >=24.11.0` (see `engines` in
 `package.json` and the requirements in [CONTRIBUTING.md](CONTRIBUTING.md)).
@@ -58,6 +61,9 @@ import helloWorld from '@cycjimmy/hello-github-package-npm'
 helloWorld.helloWorld() // 'hello world!'
 document.body.innerHTML += helloWorld.helloElement
 ```
+
+The package is written in TypeScript and the declarations are bundled, so the
+types above resolve without an additional `@types` package.
 
 The default export is an object with three members:
 
@@ -112,8 +118,8 @@ as the ESM entry.
 [semantic-image]: https://img.shields.io/badge/%20%20%F0%9F%93%A6%20%F0%9F%9A%80-semantic--release-e10079.svg
 [semantic-url]: https://github.com/semantic-release/semantic-release
 
-[jest-image]: https://img.shields.io/badge/tested_with-jest-99424f.svg
-[jest-url]: https://github.com/facebook/jest
+[vitest-image]: https://img.shields.io/badge/tested_with-vitest-6e9f18.svg
+[vitest-url]: https://vitest.dev/
 
 [license-image]: https://img.shields.io/npm/l/@cycjimmy/hello-github-package-npm
 

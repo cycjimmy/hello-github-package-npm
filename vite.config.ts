@@ -1,3 +1,5 @@
+import type { BuildOptions, Plugin, TerserOptions } from 'vite'
+
 import { createRequire } from 'node:module'
 
 import myBanner from '@cycjimmy/config-lib/esm/chore/myBanner.js'
@@ -5,12 +7,25 @@ import terserOption from '@cycjimmy/config-lib/esm/terser/4.x/production.js'
 import autoprefixer from 'autoprefixer'
 import { defineConfig } from 'vite'
 
-const pkg = createRequire(import.meta.url)('./package.json')
+interface PackageJsonMeta {
+  module: string
+  browser: string
+  [key: string]: unknown
+}
+
+interface LibraryBuildOptions {
+  formats: ('es' | 'umd')[]
+  fileName: string
+  minify?: false | 'terser'
+}
+
+const pkg = createRequire(import.meta.url)('./package.json') as PackageJsonMeta
 
 // config-lib's shared option follows terser 4's legacy `output` key. Vite 8 always
 // injects `format` and terser rejects having both, so convert `output` → `format`.
+// The assertion is confined to this boundary because config-lib ships no types.
 const { output, ...restTerserOption } = terserOption
-const terserOptions = { ...restTerserOption, format: output }
+const terserOptions = { ...restTerserOption, format: output } as TerserOptions
 
 // Output file names follow the pkg field conventions of the old rollup configs.
 const esmFileName = pkg.module.replace('dist/', '') // hello-world.esm.js
@@ -23,7 +38,7 @@ const umdMinFileName = pkg.browser.replace('dist/', '') // hello-world.umd.min.j
 // because vite-plugin-css-injected-by-js 5.0.2 produces syntactically broken
 // unminified output on Vite 8 (Rolldown module comments swallow the collapsed
 // single-line injection code).
-function injectCss({ banner = null } = {}) {
+function injectCss({ banner = null }: { banner?: string | null } = {}): Plugin {
   return {
     name: 'inject-css',
     enforce: 'post',
@@ -33,8 +48,13 @@ function injectCss({ banner = null } = {}) {
         return
 
       const css = cssAssets
-        .map((name) => {
-          const { source } = bundle[name]
+        .flatMap((name) => {
+          const asset = bundle[name]
+          // Only assets can carry CSS; narrowing keeps the access honest.
+          if (asset.type !== 'asset')
+            return []
+
+          const { source } = asset
           return source instanceof Uint8Array
             ? new TextDecoder().decode(source)
             : String(source)
@@ -62,7 +82,7 @@ function injectCss({ banner = null } = {}) {
   }
 }
 
-function libBuild({ formats, fileName, minify = false }) {
+function libBuild({ formats, fileName, minify = false }: LibraryBuildOptions): BuildOptions {
   return {
     target: 'es2015',
     outDir: 'dist',
@@ -74,7 +94,7 @@ function libBuild({ formats, fileName, minify = false }) {
     minify,
     ...(minify === 'terser' && { terserOptions }),
     lib: {
-      entry: 'src/index.js',
+      entry: 'src/index.ts',
       name: 'helloWorld',
       formats,
       fileName: () => fileName,
@@ -87,7 +107,7 @@ function libBuild({ formats, fileName, minify = false }) {
   }
 }
 
-const builds = {
+const builds: Partial<Record<string, BuildOptions>> = {
   'esm': libBuild({
     formats: ['es'],
     fileName: esmFileName,
@@ -101,24 +121,45 @@ const builds = {
     fileName: umdMinFileName,
     minify: 'terser',
   }),
-  'deployment': libBuild({
-    formats: ['umd'],
-    fileName: umdFileName,
-  }),
+}
+
+// The Pages demo is a normal HTML build of static/index.html instead of a copy of
+// static/ plus a <script> tag pointing at the UMD bundle, so the dev server and
+// the deployed site share one page. `root: 'static'` (set below) makes outDir
+// resolve to .publish/ and drops index.html at the artifact root, where Pages
+// serves it from.
+const deploymentBuild: BuildOptions = {
+  outDir: '../.publish',
+  emptyOutDir: true,
+  target: 'es2015',
 }
 
 export default defineConfig(({ mode }) => {
+  const isDeployment = mode === 'deployment'
   const build = builds[mode]
 
   return {
+    // Building from static/ keeps the deployed HTML at the artifact root.
+    ...(isDeployment && { root: 'static' }),
+    // Relative URLs keep the demo working under the repository subpath.
+    ...(isDeployment && { base: './' }),
     // Avoid copying static/ (or any public dir) into dist and polluting .release.
     publicDir: false,
+    // The dev entry lives in static/, so point `vite` at it instead of 404ing on /.
+    server: {
+      open: '/static/index.html',
+    },
     plugins: [
-      injectCss({
-        banner: mode === 'umd-min'
-          ? myBanner(pkg)
-          : null,
-      }),
+      // The demo build emits real CSS assets; only the library builds inline it.
+      ...(isDeployment
+        ? []
+        : [
+            injectCss({
+              banner: mode === 'umd-min'
+                ? myBanner(pkg)
+                : null,
+            }),
+          ]),
     ],
     css: {
       // Inline postcss config keeps the build setup in a single file.
@@ -129,11 +170,13 @@ export default defineConfig(({ mode }) => {
         // Kebab-case class names in SCSS with camelCase JS keys, so the
         // exported _style shape stays identical to the old rollup builds.
         localsConvention: 'camelCaseOnly',
-        generateScopedName: (mode === 'development' || mode === 'deployment')
+        generateScopedName: (mode === 'development' || isDeployment)
           ? '[name]__[local]' // same as the old development/deployment builds
           : '[hash:base64:10]', // same as the old production builds
       },
     },
-    ...(build && { build }),
+    ...(isDeployment
+      ? { build: deploymentBuild }
+      : (build && { build })),
   }
 })

@@ -8,10 +8,13 @@
 </head>
 
 <body>
-<script src="./hello-world.umd.js"></script>
-<script>
-  console.log(helloWorld);
-  document.body.innerHTML += helloWorld.helloElement;
-</script>
+  <script type="module">
+    // Relative on purpose: the dev server serves this file from static/ under the
+    // project root, while `build:deployment` uses static/ as its Vite root.
+    import helloWorld from '../src/index.ts'
+
+    console.log(helloWorld)
+    document.body.innerHTML += helloWorld.helloElement
+  </script>
 </body>
 </html>
