@@ -1,3 +1,15 @@
+# [11.0.0](https://github.com/cycjimmy/hello-github-package-npm/compare/v10.0.1...v11.0.0) (2026-11-17)
+
+
+* feat!: migrate the toolchain to TypeScript ([7ea3acf](https://github.com/cycjimmy/hello-github-package-npm/commit/7ea3acfd2ee09a3831f9fae7b61d65c1de18912f))
+
+
+### BREAKING CHANGES
+
+* the toolchain and dependency chain were rebuilt (JS to TS,
+Jest to Vitest, Babel removed). The runtime API, the published bundles and the
+minimum Node version are unchanged.
+
 ## [10.0.1](https://github.com/cycjimmy/hello-github-package-npm/compare/v10.0.0...v10.0.1) (2026-11-04)
 
 
