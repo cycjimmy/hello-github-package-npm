@@ -11,14 +11,35 @@ The repository is released under the MIT license, and follows a standard Github 
 
 ```shell
 $ npm install
-$ npm run dev          # Vite dev server with the root index.html
+$ npm run dev          # Vite dev server, opens static/index.html
+$ npm run type-check   # tsc --noEmit over src, __test__, tasks and the configs
 $ npm run lint         # ESLint (flat config, @antfu/eslint-config)
 $ npm run lint:style   # Stylelint for src/**/*.{css,scss}
-$ npm test             # Jest
+$ npm test             # Vitest
 $ npm run package      # build dist/ and assemble .release/
 ```
 
-`index.html` in the repository root is the Vite dev entry and imports `src/` directly. `static/index.html` is the GitHub Pages demo: it loads the bundled `hello-world.umd.js` through a `<script>` tag.
+`static/index.html` is the only page: it imports `src/` directly, so the dev
+server and the GitHub Pages demo share it. `npm run dev` opens
+`/static/index.html`; `build:deployment` builds that same file with `static/` as
+the Vite root, which is what puts `index.html` at the root of the `.publish`
+artifact.
+
+## TypeScript specifics
+
+* `tsconfig.json` type-checks everything (`noEmit`) and is the config the CI
+  `type-check` step uses. `tsconfig.build.json` is the declaration-only config
+  that writes `dist/index.d.ts` during the build.
+* `tasks/*.ts` are executed by Node's built-in type stripping, so they may only
+  use syntax that can be erased: no `enum`, `namespace` or constructor parameter
+  properties. `erasableSyntaxOnly` enforces this during `type-check`, and Node's
+  ESM resolver requires relative imports to carry the `.ts` extension.
+* `release.config.js` stays JavaScript on purpose: semantic-release loads it
+  through cosmiconfig, whose TypeScript loader resolves `typescript` from
+  semantic-release's own install tree (inside the action) rather than from this
+  project.
+* `src/types/*.d.ts` holds the ambient declarations for CSS Modules and for
+  `@cycjimmy/config-lib`, which ships no types.
 
 ## Build outputs
 
@@ -27,10 +48,19 @@ $ npm run package      # build dist/ and assemble .release/
 | File | Format | Purpose |
 | --- | --- | --- |
 | `hello-world.esm.js` | ESM | `main`, `module` and `exports` entry (bundlers, `import`) |
-| `hello-world.umd.js` | UMD | unminified browser build, used by the GitHub Pages demo |
+| `hello-world.umd.js` | UMD | unminified browser build for `<script>` tags |
 | `hello-world.umd.min.js` | UMD | minified browser/CDN build, attached to the GitHub release |
+| `index.d.ts` | Types | declarations for `types` and the `exports` `types` condition |
 
-`npm run build:deployment` builds the UMD bundle and copies `static/` plus the bundle into `.publish/`, which the `Deploy To GitHub Pages` workflow uploads as a Pages artifact and publishes with `actions/deploy-pages`.
+`npm run build` runs `build:types` (`tsc -p tsconfig.build.json`) before the
+three Vite builds; Vite runs with `emptyOutDir: false`, so the declarations
+survive the JS builds.
+
+`npm run build:deployment` builds `static/index.html` as a regular Vite app into
+`.publish/` (`base: './'` so it works under the repository subpath). The
+`Deploy To GitHub Pages` workflow uploads `.publish` as a Pages artifact and
+publishes it with `actions/deploy-pages`. The deployed page loads the bundled
+ESM entry plus an extracted stylesheet, not the UMD build.
 
 ## Repository settings required by the deployment
 

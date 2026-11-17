@@ -57,7 +57,10 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Lint JavaScript
+      - name: Type check
+        run: npm run type-check
+
+      - name: Lint JS/TS
         run: npm run lint
 
       - name: Lint SCSS

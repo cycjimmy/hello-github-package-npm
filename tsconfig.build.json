@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "noEmit": false,
+    // `isolatedDeclarations` is deliberately off: it rejects a default-exported
+    // object literal, and the annotated-const workaround renames the bundle
+    // identifiers. The public shape is pinned by `HelloWorldExports` instead and
+    // verified by the `grep scss dist/*.d.ts` check.
+    "outDir": "dist"
+  },
+  "include": ["src"]
+}

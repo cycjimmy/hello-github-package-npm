@@ -23,7 +23,7 @@ updates:
     labels:
       - dependencies
     open-pull-requests-limit: 10
-    # @babel/* and jest* are left ungrouped on purpose: their majors need to be
+    # typescript and vitest are left ungrouped on purpose: their majors need to be
     # reviewed on their own instead of riding along with an unrelated bump.
     groups:
       lint:

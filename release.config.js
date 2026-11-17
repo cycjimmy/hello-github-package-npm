@@ -1,3 +1,7 @@
+// Kept as JavaScript on purpose: semantic-release loads this file through
+// cosmiconfig, whose TypeScript loader resolves `typescript` from semantic-release's
+// own install tree (the action's node_modules). This repository installs TypeScript
+// in the project instead, so a `release.config.ts` would fail inside the action.
 import process from 'node:process'
 import makeConfig from '@cycjimmy/config-lib/esm/semanticRelease/19.x/makeConfigWithPgkRootForLibrary.js'
 
