@@ -38,8 +38,9 @@ artifact.
   through cosmiconfig, whose TypeScript loader resolves `typescript` from
   semantic-release's own install tree (inside the action) rather than from this
   project.
-* `src/types/*.d.ts` holds the ambient declarations for CSS Modules and for
-  `@cycjimmy/config-lib`, which ships no types.
+* `src/types/*.d.ts` holds the ambient declarations for CSS Modules. The
+  hand-written shims for `@cycjimmy/config-lib` were dropped with v4, which now
+  ships its own `.d.ts` files under `dist/`.
 
 ## Build outputs
 
